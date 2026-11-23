@@ -1,4 +1,363 @@
 
-<html>
-<h2>Pagina Principal</h2>
-  </html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamally Editora | Catálogo Oficial &amp; Materiais Técnicos</title>
+  <meta name="description" content="Catálogo oficial de publicações técnicas, manuais de engenharia, agricultura 4.0 e soberania digital da Hamally Editora." />
+  <style>
+    :root {
+      --bg-dark: #0B1E2D;
+      --bg-card: #132B3E;
+      --bg-card-hover: #18364E;
+      --primary: #E36520;
+      --primary-hover: #C85314;
+      --secondary: #1F7A6A;
+      --secondary-hover: #165B4F;
+      --text-main: #F4F6F8;
+      --text-muted: #B0C4D4;
+      --border: #234763;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(180deg, #07141F 0%, var(--bg-dark) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: rgba(31, 122, 106, 0.2);
+      border: 1px solid var(--secondary);
+      color: #5EEAD4;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    header h1 span {
+      color: var(--primary);
+    }
+
+    header p {
+      max-width: 660px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-left: 0.75rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .book-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--secondary);
+      background-color: var(--bg-card-hover);
+    }
+
+    .book-cover {
+      height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cover-cafe {
+      background: linear-gradient(135deg, #1E3A2F 0%, #0E241C 100%);
+    }
+
+    .cover-descarte {
+      background: linear-gradient(135deg, #1A2E4C 0%, #0D192B 100%);
+    }
+
+    .cover-breve {
+      background: linear-gradient(135deg, #27323F 0%, #141B24 100%);
+    }
+
+    .book-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #FDBA74;
+      margin-bottom: 0.4rem;
+    }
+
+    .book-cover h2 {
+      font-size: 1.35rem;
+      line-height: 1.25;
+      color: #FFFFFF;
+    }
+
+    .book-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .book-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .book-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background: rgba(11, 30, 45, 0.7);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .btn-disabled {
+      background-color: #1E3344;
+      color: #7E97AC;
+      border: 1px dashed #365670;
+      cursor: default;
+    }
+
+    .support-banner {
+      margin-top: 3.5rem;
+      background: linear-gradient(135deg, #132B3E 0%, #0E2333 100%);
+      border: 1px solid var(--secondary);
+      border-radius: 14px;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .support-banner-text {
+      max-width: 680px;
+    }
+
+    .support-banner-text h3 {
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 0.4rem;
+    }
+
+    .support-banner-text p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="brand-badge">Hamally Editora • Publicações Técnicas</span>
+    <h1>Catálogo Oficial <span>Hamally</span></h1>
+    <p>Manuais práticos de engenharia, agronomia de precisão, otimização de sistemas e soberania tecnológica. Selecione uma obra abaixo para conhecer o conteúdo ou acessar os materiais complementares.</p>
+  </header>
+
+  <main>
+    <h2 class="section-title">Obras Publicadas &amp; Próximos Lançamentos</h2>
+
+    <div class="books-grid">
+
+      <!-- ============================================================
+           LIVRO 1: MANUAL TÉCNICO DA CAFEICULTURA MODERNA
+           ============================================================ -->
+      <article class="book-card">
+        <div class="book-cover cover-cafe">
+          <span class="book-category">Agronomia &amp; Café 4.0</span>
+          <h2>Manual Técnico da Cafeicultura Moderna</h2>
+        </div>
+        <div class="book-body">
+          <div>
+            <p>Guia completo sobre manejo de Arábica, Conilon e Robusta, fertirrigação automatizada, calendário lunar aplicado, engenharia de pós-colheita e torra de precisão.</p>
+            <div class="book-meta">
+              <span class="tag">Edição Técnica</span>
+              <span class="tag">PT • EN • ES</span>
+              <span class="tag">Planilhas &amp; Bônus</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a href="/manual-tecnico-da-cafeicultura-moderna/" class="btn btn-primary">Conhecer o Livro</a>
+            <a href="https://app.hamally.store/membros.html?livro=cafeicultura" class="btn btn-secondary">Material de Apoio</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================================
+           LIVRO 2: O FIM DO DESCARTE DIGITAL
+           ============================================================ -->
+      <article class="book-card">
+        <div class="book-cover cover-descarte">
+          <span class="book-category">Tecnologia &amp; Soberania Digital</span>
+          <h2>O Fim do Descarte Digital</h2>
+        </div>
+        <div class="book-body">
+          <div>
+            <p>Como combater a obsolescência programada, recuperar computadores e smartphones antigos, otimizar sistemas operacionais e retomar o controle sobre seu próprio hardware.</p>
+            <div class="book-meta">
+              <span class="tag">Edição Técnica</span>
+              <span class="tag">Scripts &amp; Ferramentas</span>
+              <span class="tag">Anti-Obsolescência</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a href="/o-fim-do-descarte-digital/" class="btn btn-primary">Conhecer o Livro</a>
+            <a href="https://app.hamally.store/membros.html?livro=fim-do-descarte-digital" class="btn btn-secondary">Material de Apoio</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================================
+           INDICADOR DE NOVOS LANÇAMENTOS (EM BREVE)
+           ============================================================ -->
+      <article class="book-card">
+        <div class="book-cover cover-breve">
+          <span class="book-category">Próximo Lançamento</span>
+          <h2>Novas Obras em Produção</h2>
+        </div>
+        <div class="book-body">
+          <div>
+            <p>Novos manuais técnicos da Hamally Editora estão em fase final de revisão editorial, incluindo guias avançados de otimização de sistemas e recuperação de dispositivos móveis.</p>
+            <div class="book-meta">
+              <span class="tag">Em Preparação</span>
+              <span class="tag">Edição 2026</span>
+            </div>
+          </div>
+          <div class="actions">
+            <span class="btn btn-disabled">Lançamento em Breve</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================================
+           MODELO PARA ADICIONAR NOVO LIVRO NO FUTURO:
+           1. Copie todo este bloco <article class="book-card">...</article>
+           2. Cole acima do card "Próximo Lançamento"
+           3. Altere o título, a descrição e o link href="/pasta-do-livro/"
+           ============================================================ -->
+
+    </div>
+
+    <section class="support-banner">
+      <div class="support-banner-text">
+        <h3>Já adquiriu algum livro da Hamally Editora?</h3>
+        <p>Acesse o Portal do Leitor para baixar planilhas, scripts de otimização, arquivos técnicos e atualizações exclusivas de cada obra.</p>
+      </div>
+      <a href="https://app.hamally.store" class="btn btn-secondary">Abrir Portal de Materiais</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Hamally Editora • Todos os direitos reservados • Willian Corrêa de Moraes</p>
+  </footer>
+
+</body>
+</html>
