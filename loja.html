@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamally Editora — Acervo Técnico &amp; Editorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="loja.css" />
+</head>
+<body>
+  <div class="topo-bg" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <div class="top-ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>◆ HAMALLY EDITORA — ACERVO TÉCNICO &amp; EDITORIAL</span>
+      <span>◆ EDIÇÕES EM ALTA DEFINIÇÃO 300 DPI</span>
+      <span>◆ PROTOCOLOS AUDITÁVEIS &amp; MATERIAL DE APOIO</span>
+      <span>◆ AUTORIA: WILLIAN CORRÊA DE MORAES</span>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#topo" class="brand">
+        <div class="brand-seal">
+          <img id="brandLogoImg" src="../assets/logo/logo.svg" alt="Hamally Editora" />
+        </div>
+        <div class="brand-text">
+          <strong id="brandName">Hamally Editora</strong>
+          <span id="brandSub">Acervo Técnico, Científico &amp; Editorial</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Navegação da loja">
+        <a href="#destaque" class="nav-link">Obra em Destaque</a>
+        <a href="#catalogo" class="nav-link">Coleção (4 Livros)</a>
+        <button type="button" class="nav-link nav-btn-editor" id="btnAbrirEditor">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+          </svg>
+          Editar Catálogo
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="topo">
+    <!-- VITRINE PRINCIPAL DO LIVRO EM DESTAQUE -->
+    <section class="hero-section" id="destaque">
+      <div class="container">
+        <div class="hero-frame" id="heroContainer">
+          <!-- Renderizado via CATALOGO_LIVROS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- COLEÇÃO EDITORIAL COM OS 4 LIVROS -->
+    <section class="catalog-section" id="catalogo">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">CATÁLOGO OFICIAL // 04 PUBLICAÇÕES</span>
+            <h2>Coleção Editorial Completa</h2>
+            <p id="lojaTagline">Publicações independentes com rigor técnico, diagramação editorial premium e materiais complementares auditáveis.</p>
+          </div>
+          <span class="card-badge" id="contadorObras">4 obras disponíveis</span>
+        </div>
+
+        <div class="controls-bar">
+          <div class="filter-pills" id="filterPills" role="group" aria-label="Filtrar por categoria"></div>
+          <div class="right-controls">
+            <div class="search-box">
+              <input type="search" id="searchInput" placeholder="Buscar título, autor ou tema..." aria-label="Buscar livros" />
+            </div>
+            <div class="view-toggle" role="group" aria-label="Modo de visualização">
+              <button type="button" class="view-btn active" data-view="grid">Grade</button>
+              <button type="button" class="view-btn" data-view="list">Vitrine</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+          <!-- Cards gerados via JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span id="footerText">© 2026 Hamally Editora • Acervo Editorial Independente</span>
+      <button type="button" class="btn btn-ghost btn-sm" id="btnAbrirEditorFooter">
+        Editar / Atualizar Links e Livros
+      </button>
+    </div>
+  </footer>
+
+  <!-- MODAL DE FICHA TÉCNICA + QR CODE -->
+  <div class="modal-backdrop" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <button type="button" class="modal-close" id="btnCloseBookModal" aria-label="Fechar">×</button>
+      <div id="bookModalContent"></div>
+    </div>
+  </div>
+
+  <!-- EDITOR RÁPIDO PARA ATUALIZAÇÃO MANUAL -->
+  <div class="modal-backdrop" id="editorModal" role="dialog" aria-modal="true" aria-labelledby="editorModalTitle">
+    <div class="modal-panel modal-panel-wide">
+      <button type="button" class="modal-close" id="btnCloseEditorModal" aria-label="Fechar">×</button>
+      <h2 id="editorModalTitle" style="margin:0 0 0.35rem; font-family:var(--font-display); font-size:1.75rem;">
+        Estúdio de Edição do Catálogo
+      </h2>
+      <p style="margin:0; font-size:0.86rem; color:var(--text-muted);">
+        Atualize manualmente títulos, capas (caminhos relativos à pasta <code>assets</code>) e os links de <strong>Conhecer o Livro</strong> e <strong>Material de Apoio</strong>. Use <strong>Aplicar na Prévia</strong> para visualizar na hora e <strong>Baixar catalogo_livros.js</strong> para salvar na pasta <code>marketing/</code>.
+      </p>
+      <div class="editor-list" id="editorList"></div>
+      <div class="editor-footer">
+        <button type="button" class="btn btn-primary" id="btnAplicarEdicao">Aplicar na Prévia</button>
+        <button type="button" class="btn btn-secondary" id="btnBaixarConfig">Baixar catalogo_livros.js</button>
+        <button type="button" class="btn btn-ghost" id="btnCopiarConfig">Copiar Código JS</button>
+        <button type="button" class="btn btn-ghost" id="btnRestaurarArquivo">Restaurar do Arquivo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Dados editáveis dos 4 livros -->
+  <script src="catalogo_livros.js"></script>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "hamally_loja_catalogo_v2";
+      const ICON_BOOK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>`;
+      const ICON_SUPPORT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`;
+
+      function clone(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
+
+      const config = clone(window.LOJA_CONFIG || {});
+      const arquivoOriginalJson = JSON.stringify(window.CATALOGO_LIVROS || []);
+      let livros = clone(window.CATALOGO_LIVROS || []);
+
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.base === arquivoOriginalJson && Array.isArray(parsed.livros) && parsed.livros.length > 0) {
+            livros = parsed.livros;
+          } else {
+            localStorage.removeItem(STORAGE_KEY);
+          }
+        }
+      } catch (_e) { /* sem acesso a storage */ }
+
+      let categoriaAtiva = "Todos";
+      let termoBusca = "";
+      let viewMode = "grid";
+      let heroTabAtiva = "resumo";
+
+      function resolveAsset(relPath) {
+        if (!relPath) return "";
+        if (/^(https?:|data:|file:|\/|\.\.\/)/.test(relPath)) return relPath;
+        const base = (config.BASE_ASSETS || "../assets").replace(/\/+$/, "");
+        return `${base}/${relPath.replace(/^\/+/, "")}`;
+      }
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function showToast(msg) {
+        const el = document.getElementById("toast");
+        el.textContent = msg;
+        el.classList.add("show");
+        clearTimeout(el._timer);
+        el._timer = setTimeout(() => el.classList.remove("show"), 3200);
+      }
+
+      function buildCoverCard(livro, openModalOnClick = true) {
+        const imgUrl = resolveAsset(livro.capa);
+        const overlayHtml = livro.sobreporTituloNaCapa
+          ? `
+            <div class="cover-inner-border"></div>
+            <div class="book-cover-overlay">
+              <div>
+                ${livro.kicker ? `<div class="cover-kicker">${escapeHtml(livro.kicker)}</div>` : ""}
+                <h3 class="cover-title">${escapeHtml(livro.titulo)}</h3>
+              </div>
+              <div class="cover-bottom">
+                ${livro.subtitulo ? `<p class="cover-subtitle">${escapeHtml(livro.subtitulo)}</p>` : ""}
+                <div class="cover-author">${escapeHtml(livro.autor)}</div>
+              </div>
+            </div>`
+          : `<div class="cover-inner-border"></div>`;
+
+        const attr = openModalOnClick ? `data-book-id="${escapeHtml(livro.id)}"` : "";
+        return `
+          <div class="book-cover-card" ${attr}>
+            <img class="book-cover-img" src="${escapeHtml(imgUrl)}" alt="Capa: ${escapeHtml(livro.titulo)}" loading="lazy" />
+            ${overlayHtml}
+          </div>`;
+      }
+
+      function renderHero() {
+        const hero = livros.find((l) => l.id === config.livroDestaqueId) || livros.find((l) => l.destaque) || livros[0];
+        const container = document.getElementById("heroContainer");
+        if (!hero || !container) return;
+
+        const topicosHtml = (hero.topicos || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+        const qrPath = hero.qrcode ? resolveAsset(hero.qrcode) : "";
+
+        let tabContent = `<p class="hero-summary">${escapeHtml(hero.resumo)}</p>`;
+        if (heroTabAtiva === "topicos") {
+          tabContent = `<ul class="hero-meta-list">${topicosHtml}</ul>`;
+        } else if (heroTabAtiva === "apoio") {
+          tabContent = `
+            <p class="hero-summary">
+              Acesse o portal complementar oficial de <strong>${escapeHtml(hero.titulo)}</strong> com planilhas de campo, atualizações técnicas da obra e materiais complementares vinculados ao QR Code impresso na contracapa.
+            </p>`;
+        }
+
+        const backQrHtml = qrPath
+          ? `
+            <div class="back-qr-panel">
+              <img src="${escapeHtml(qrPath)}" alt="QR Code oficial" />
+              <div>
+                <strong>ACESSO DIGITAL COMPLEMENTAR</strong>
+                <small>${escapeHtml(hero.urlConhecer)}</small>
+              </div>
+            </div>`
+          : "";
+
+        container.innerHTML = `
+          <span class="corner-ornament corner-tl"></span>
+          <span class="corner-ornament corner-tr"></span>
+          <span class="corner-ornament corner-bl"></span>
+          <span class="corner-ornament corner-br"></span>
+          <div class="hero-grid">
+            <div>
+              <div class="hero-eyebrow">
+                <span class="kicker-pill">${escapeHtml(hero.badge || "Destaque Editorial")}</span>
+                <span class="edition-tag">${escapeHtml(hero.edicao || hero.categoria)}</span>
+              </div>
+              <h1 class="hero-title">${escapeHtml(hero.titulo)}</h1>
+              <p class="hero-subtitle">${escapeHtml(hero.subtitulo)}</p>
+
+              <div class="hero-tabs" role="tablist" aria-label="Informações do livro em destaque">
+                <button type="button" class="hero-tab ${heroTabAtiva === "resumo" ? "active" : ""}" data-hero-tab="resumo">Visão Geral</button>
+                <button type="button" class="hero-tab ${heroTabAtiva === "topicos" ? "active" : ""}" data-hero-tab="topicos">Conteúdo &amp; Escopo</button>
+                <button type="button" class="hero-tab ${heroTabAtiva === "apoio" ? "active" : ""}" data-hero-tab="apoio">Material de Apoio</button>
+              </div>
+
+              <div class="hero-tab-panel">${tabContent}</div>
+
+              <div class="hero-specs-strip">
+                <div class="spec-cell">
+                  <strong>184 págs</strong>
+                  <span>Formato 7" × 10"</span>
+                </div>
+                <div class="spec-cell">
+                  <strong>300 DPI</strong>
+                  <span>Diagramas Técnicos</span>
+                </div>
+                <div class="spec-cell">
+                  <strong>PT • EN • ES</strong>
+                  <span>Edição Multilíngue</span>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="${escapeHtml(hero.urlConhecer)}" target="_blank" rel="noopener">
+                  ${ICON_BOOK}
+                  ${escapeHtml(hero.textoBotaoConhecer || "Conhecer o Livro")}
+                </a>
+                <a class="btn btn-secondary" href="${escapeHtml(hero.urlMaterialApoio)}" target="_blank" rel="noopener">
+                  ${ICON_SUPPORT}
+                  ${escapeHtml(hero.textoBotaoApoio || "Material de Apoio")}
+                </a>
+                <button type="button" class="btn btn-ghost" data-open-modal="${escapeHtml(hero.id)}">
+                  Ficha &amp; QR
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-cover-col">
+              <div class="book-3d-scene">
+                <div class="book-3d-flipper" id="heroFlipper" title="Clique para girar entre capa e contracapa">
+                  <div class="book-face book-face-front">
+                    ${buildCoverCard(hero, false)}
+                  </div>
+                  <div class="book-face book-face-back">
+                    <div>
+                      <div class="back-kicker">CONTRACAPA • EDIÇÃO OFICIAL</div>
+                      <h3 style="font-family:var(--font-display); font-size:1.25rem; margin:0.25rem 0 0.45rem;">${escapeHtml(hero.titulo)}</h3>
+                      <p class="back-synopsis">${escapeHtml(hero.resumo)}</p>
+                    </div>
+                    ${backQrHtml}
+                    <div style="border-top:1px solid var(--hairline); padding-top:0.5rem; font-size:0.72rem; color:var(--accent-light);">
+                      <strong>${escapeHtml(hero.autor)}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="flip-hint-btn" id="btnFlipHero">
+                ↻ Girar Capa / Ver Contracapa &amp; QR Code
+              </button>
+            </div>
+          </div>`;
+
+        ativarEfeito3DCapas();
+      }
+
+      function renderFilters() {
+        const pillsEl = document.getElementById("filterPills");
+        const cats = ["Todos", ...new Set(livros.map((l) => l.categoria).filter(Boolean))];
+        pillsEl.innerHTML = cats
+          .map(
+            (cat) => `
+            <button type="button" class="filter-pill ${cat === categoriaAtiva ? "active" : ""}" data-cat="${escapeHtml(cat)}">
+              ${escapeHtml(cat)}
+            </button>`
+          )
+          .join("");
+      }
+
+      function renderCatalog() {
+        const grid = document.getElementById("booksGrid");
+        grid.classList.toggle("view-list", viewMode === "list");
+
+        const termo = termoBusca.trim().toLowerCase();
+        const filtrados = livros.filter((l) => {
+          const matchCat = categoriaAtiva === "Todos" || l.categoria === categoriaAtiva;
+          const texto = `${l.titulo} ${l.subtitulo} ${l.autor} ${l.categoria} ${l.resumo}`.toLowerCase();
+          const matchBusca = !termo || texto.includes(termo);
+          return matchCat && matchBusca;
+        });
+
+        document.getElementById("contadorObras").textContent =
+          filtrados.length === 1 ? "1 obra exibida" : `${filtrados.length} obras disponíveis`;
+
+        if (filtrados.length === 0) {
+          grid.innerHTML = `
+            <div class="editor-item" style="grid-column:1/-1; text-align:center;">
+              <p style="margin:0;">Nenhuma obra corresponde à busca atual.</p>
+            </div>`;
+          return;
+        }
+
+        grid.innerHTML = filtrados
+          .map((livro, idx) => {
+            const num = String(livro.ordem || idx + 1).padStart(2, "0");
+            const topicos = (livro.topicos || []).slice(0, 3).map((t) => `<li>${escapeHtml(t)}</li>`).join("");
+            return `
+            <article class="book-card ${livro.destaque ? "is-featured" : ""}">
+              <span class="card-index-num">VOL. ${num}</span>
+              <div class="card-cover-wrap">
+                ${buildCoverCard(livro, true)}
+                <button type="button" class="btn btn-ghost card-details-link" data-open-modal="${escapeHtml(livro.id)}">
+                  Ficha Técnica
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="card-top-meta">
+                  <span class="card-cat">${escapeHtml(livro.categoria)}</span>
+                  ${livro.badge ? `<span class="card-badge">${escapeHtml(livro.badge)}</span>` : ""}
+                </div>
+                <h3 class="card-title">${escapeHtml(livro.titulo)}</h3>
+                <div class="card-author">${escapeHtml(livro.autor)}</div>
+                <p class="card-desc">${escapeHtml(livro.resumo)}</p>
+                ${topicos ? `<ul class="card-topics">${topicos}</ul>` : ""}
+                <div class="card-actions">
+                  <a class="btn btn-primary btn-sm" href="${escapeHtml(livro.urlConhecer)}" target="_blank" rel="noopener">
+                    ${ICON_BOOK}
+                    ${escapeHtml(livro.textoBotaoConhecer || "Conhecer o Livro")}
+                  </a>
+                  <a class="btn btn-secondary btn-sm" href="${escapeHtml(livro.urlMaterialApoio)}" target="_blank" rel="noopener">
+                    ${ICON_SUPPORT}
+                    ${escapeHtml(livro.textoBotaoApoio || "Material de Apoio")}
+                  </a>
+                </div>
+              </div>
+            </article>`;
+          })
+          .join("");
+
+        ativarAnimacoesScroll();
+        ativarEfeito3DCapas();
+      }
+
+      function openBookModal(bookId) {
+        const livro = livros.find((l) => l.id === bookId);
+        if (!livro) return;
+        const modal = document.getElementById("bookModal");
+        const content = document.getElementById("bookModalContent");
+
+        const topicos = (livro.topicos || []).map((t) => `<li>${escapeHtml(t)}</li>`).join("");
+        const qrBlock = livro.qrcode
+          ? `
+            <div class="modal-qr-box">
+              <img src="${escapeHtml(resolveAsset(livro.qrcode))}" alt="QR Code" />
+              <p>${escapeHtml(livro.urlConhecer)}</p>
+            </div>`
+          : "";
+
+        content.innerHTML = `
+          <div class="modal-book-layout">
+            <div>
+              ${buildCoverCard(livro, false)}
+              ${qrBlock}
+            </div>
+            <div>
+              <span class="kicker-pill">${escapeHtml(livro.categoria)}</span>
+              <h2 id="modalTitle" style="font-family:var(--font-display); font-size:1.95rem; line-height:1.1; margin:0.75rem 0 0.45rem;">${escapeHtml(livro.titulo)}</h2>
+              <p style="margin:0 0 0.55rem; color:var(--accent-light); font-weight:600;">${escapeHtml(livro.subtitulo)}</p>
+              <p style="margin:0 0 0.9rem; font-size:0.84rem; color:var(--accent);">
+                <strong>Autoria:</strong> ${escapeHtml(livro.autor)} ${livro.edicao ? `• ${escapeHtml(livro.edicao)}` : ""}
+              </p>
+              <p style="margin:0 0 1rem; color:var(--text-muted); font-size:0.92rem;">${escapeHtml(livro.resumo)}</p>
+              ${topicos ? `<ul class="hero-meta-list">${topicos}</ul>` : ""}
+              <div class="hero-actions" style="margin-top:1.35rem;">
+                <a class="btn btn-primary" href="${escapeHtml(livro.urlConhecer)}" target="_blank" rel="noopener">
+                  ${ICON_BOOK}
+                  ${escapeHtml(livro.textoBotaoConhecer || "Conhecer o Livro")}
+                </a>
+                <a class="btn btn-secondary" href="${escapeHtml(livro.urlMaterialApoio)}" target="_blank" rel="noopener">
+                  ${ICON_SUPPORT}
+                  ${escapeHtml(livro.textoBotaoApoio || "Material de Apoio")}
+                </a>
+              </div>
+            </div>
+          </div>`;
+
+        modal.classList.add("open");
+        ativarEfeito3DCapas();
+      }
+
+      /* Efeito 3D amortecido (lerp) + reflexo dourado metálico */
+      function ativarEfeito3DCapas() {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        document.querySelectorAll(".book-cover-card").forEach((card) => {
+          if (card.dataset.tiltBound) return;
+          card.dataset.tiltBound = "1";
+
+          let targetX = 0, targetY = 0, curX = 0, curY = 0, hovering = false, rafId = 0;
+
+          function tick() {
+            curX += (targetX - curX) * 0.16;
+            curY += (targetY - curY) * 0.16;
+            const scale = hovering ? 1.025 : 1;
+            card.style.transform = `rotateX(${curX.toFixed(2)}deg) rotateY(${curY.toFixed(2)}deg) scale(${scale})`;
+            if (hovering || Math.abs(curX) > 0.04 || Math.abs(curY) > 0.04) {
+              rafId = requestAnimationFrame(tick);
+            } else {
+              card.style.transform = "";
+              rafId = 0;
+            }
+          }
+
+          card.addEventListener("mousemove", (e) => {
+            const flipper = card.closest(".book-3d-flipper");
+            if (flipper && flipper.classList.contains("is-flipped")) return;
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            targetY = (x - 0.5) * 16;
+            targetX = (0.5 - y) * 16;
+            hovering = true;
+            card.style.setProperty("--mx", `${(x * 100).toFixed(1)}%`);
+            card.style.setProperty("--my", `${(y * 100).toFixed(1)}%`);
+            if (!rafId) rafId = requestAnimationFrame(tick);
+          });
+
+          card.addEventListener("mouseleave", () => {
+            hovering = false;
+            targetX = 0;
+            targetY = 0;
+            if (!rafId) rafId = requestAnimationFrame(tick);
+          });
+        });
+      }
+
+      function ativarAnimacoesScroll() {
+        const cards = document.querySelectorAll(".book-card");
+        if (!("IntersectionObserver" in window)) {
+          cards.forEach((c) => c.classList.add("is-visible"));
+          return;
+        }
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        cards.forEach((card, idx) => {
+          card.style.transitionDelay = `${idx * 70}ms`;
+          obs.observe(card);
+        });
+      }
+
+      /* Poeira dourada editorial em canvas */
+      function iniciarCanvasAmbiente() {
+        const canvas = document.getElementById("ambient-canvas");
+        if (!canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const ctx = canvas.getContext("2d");
+        let w = 0, h = 0;
+        const particulas = Array.from({ length: 42 }, () => ({
+          x: Math.random(),
+          y: Math.random(),
+          r: 0.7 + Math.random() * 1.9,
+          vy: 0.00014 + Math.random() * 0.00032,
+          vx: (Math.random() - 0.5) * 0.00015,
+          a: 0.14 + Math.random() * 0.42
+        }));
+
+        function resize() {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        function loop() {
+          ctx.clearRect(0, 0, w, h);
+          for (const p of particulas) {
+            p.y -= p.vy;
+            p.x += p.vx;
+            if (p.y < -0.02) p.y = 1.02;
+            if (p.x < -0.02) p.x = 1.02;
+            if (p.x > 1.02) p.x = -0.02;
+            ctx.beginPath();
+            ctx.arc(p.x * w, p.y * h, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(218, 178, 108, ${p.a})`;
+            ctx.fill();
+          }
+          requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+      }
+
+      /* Estúdio de Edição Manual */
+      function renderEditorForm() {
+        const list = document.getElementById("editorList");
+        list.innerHTML = livros
+          .map(
+            (l, i) => `
+            <div class="editor-item" data-edit-index="${i}">
+              <h4>Livro ${i + 1} — ${escapeHtml(l.titulo)}</h4>
+              <div class="editor-grid">
+                <div class="editor-field">
+                  <label>Título</label>
+                  <input type="text" data-field="titulo" value="${escapeHtml(l.titulo)}" />
+                </div>
+                <div class="editor-field">
+                  <label>Autor</label>
+                  <input type="text" data-field="autor" value="${escapeHtml(l.autor)}" />
+                </div>
+                <div class="editor-field">
+                  <label>Categoria</label>
+                  <input type="text" data-field="categoria" value="${escapeHtml(l.categoria)}" />
+                </div>
+                <div class="editor-field">
+                  <label>Capa (relativa à pasta assets/)</label>
+                  <input type="text" data-field="capa" value="${escapeHtml(l.capa)}" />
+                </div>
+                <div class="editor-field">
+                  <label>Link — Conhecer o Livro</label>
+                  <input type="url" data-field="urlConhecer" value="${escapeHtml(l.urlConhecer)}" />
+                </div>
+                <div class="editor-field">
+                  <label>Link — Material de Apoio</label>
+                  <input type="url" data-field="urlMaterialApoio" value="${escapeHtml(l.urlMaterialApoio)}" />
+                </div>
+                <div class="editor-field full">
+                  <label>Resumo Editorial</label>
+                  <textarea rows="2" data-field="resumo">${escapeHtml(l.resumo)}</textarea>
+                </div>
+              </div>
+            </div>`
+          )
+          .join("");
+      }
+
+      function coletarDadosEditor() {
+        document.querySelectorAll("#editorList .editor-item").forEach((box) => {
+          const idx = Number(box.dataset.editIndex);
+          const item = livros[idx];
+          if (!item) return;
+          box.querySelectorAll("[data-field]").forEach((input) => {
+            item[input.dataset.field] = input.value.trim();
+          });
+        });
+      }
+
+      function gerarArquivoJsAtualizado() {
+        return (
+          `window.LOJA_CONFIG = ${JSON.stringify(config, null, 2)};\n\n` +
+          `window.CATALOGO_LIVROS = ${JSON.stringify(livros, null, 2)};\n`
+        );
+      }
+
+      function initHeaderFooter() {
+        document.getElementById("brandName").textContent = config.nomeEditora || "Hamally Editora";
+        document.getElementById("brandSub").textContent = config.subtituloLoja || "";
+        document.getElementById("lojaTagline").textContent = config.taglineHero || "";
+        document.getElementById("footerText").textContent = config.rodapeTexto || "";
+        if (config.logoPath) {
+          document.getElementById("brandLogoImg").src = resolveAsset(config.logoPath);
+        }
+      }
+
+      /* Eventos delegados */
+      document.addEventListener("click", (e) => {
+        const heroTabBtn = e.target.closest("[data-hero-tab]");
+        if (heroTabBtn) {
+          heroTabAtiva = heroTabBtn.dataset.heroTab;
+          renderHero();
+          return;
+        }
+
+        if (e.target.closest("#btnFlipHero") || e.target.closest("#heroFlipper")) {
+          const flipper = document.getElementById("heroFlipper");
+          if (flipper) {
+            const frontCard = flipper.querySelector(".book-face-front .book-cover-card");
+            if (frontCard) frontCard.style.transform = "";
+            flipper.classList.toggle("is-flipped");
+          }
+          return;
+        }
+
+        const catBtn = e.target.closest("[data-cat]");
+        if (catBtn) {
+          categoriaAtiva = catBtn.dataset.cat;
+          renderFilters();
+          renderCatalog();
+          return;
+        }
+
+        const viewBtn = e.target.closest("[data-view]");
+        if (viewBtn) {
+          viewMode = viewBtn.dataset.view;
+          document.querySelectorAll("[data-view]").forEach((b) => b.classList.toggle("active", b === viewBtn));
+          renderCatalog();
+          return;
+        }
+
+        const modalBtn = e.target.closest("[data-open-modal], .book-cover-card[data-book-id]");
+        if (modalBtn) {
+          const id = modalBtn.dataset.openModal || modalBtn.dataset.bookId;
+          openBookModal(id);
+        }
+      });
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        termoBusca = e.target.value;
+        renderCatalog();
+      });
+
+      document.getElementById("btnCloseBookModal").addEventListener("click", () => {
+        document.getElementById("bookModal").classList.remove("open");
+      });
+      document.getElementById("bookModal").addEventListener("click", (e) => {
+        if (e.target.id === "bookModal") e.target.classList.remove("open");
+      });
+
+      function abrirEditor() {
+        renderEditorForm();
+        document.getElementById("editorModal").classList.add("open");
+      }
+
+      document.getElementById("btnAbrirEditor").addEventListener("click", abrirEditor);
+      document.getElementById("btnAbrirEditorFooter").addEventListener("click", abrirEditor);
+      document.getElementById("btnCloseEditorModal").addEventListener("click", () => {
+        document.getElementById("editorModal").classList.remove("open");
+      });
+      document.getElementById("editorModal").addEventListener("click", (e) => {
+        if (e.target.id === "editorModal") e.target.classList.remove("open");
+      });
+
+      document.getElementById("btnAplicarEdicao").addEventListener("click", () => {
+        coletarDadosEditor();
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ base: arquivoOriginalJson, livros }));
+        } catch (_e) {}
+        renderHero();
+        renderFilters();
+        renderCatalog();
+        document.getElementById("editorModal").classList.remove("open");
+        showToast("Prévia atualizada! Baixe catalogo_livros.js para gravar em disco.");
+      });
+
+      document.getElementById("btnRestaurarArquivo").addEventListener("click", () => {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_e) {}
+        livros = clone(window.CATALOGO_LIVROS || []);
+        renderEditorForm();
+        renderHero();
+        renderFilters();
+        renderCatalog();
+        showToast("Catálogo restaurado do arquivo catalogo_livros.js.");
+      });
+
+      document.getElementById("btnBaixarConfig").addEventListener("click", () => {
+        coletarDadosEditor();
+        const blob = new Blob([gerarArquivoJsAtualizado()], { type: "application/javascript;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "catalogo_livros.js";
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast("catalogo_livros.js baixado! Substitua na pasta marketing/.");
+      });
+
+      document.getElementById("btnCopiarConfig").addEventListener("click", async () => {
+        coletarDadosEditor();
+        try {
+          await navigator.clipboard.writeText(gerarArquivoJsAtualizado());
+          showToast("Código JS copiado para a área de transferência!");
+        } catch (_e) {
+          showToast("Use o botão Baixar catalogo_livros.js para salvar.");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("siteHeader");
+        const bar = document.getElementById("scrollProgress");
+        const y = window.scrollY || 0;
+        header.classList.toggle("scrolled", y > 24);
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = max > 0 ? `${Math.min(100, (y / max) * 100)}%` : "0%";
+      });
+
+      initHeaderFooter();
+      renderHero();
+      renderFilters();
+      renderCatalog();
+      iniciarCanvasAmbiente();
+    })();
+  </script>
+</body>
+</html>
