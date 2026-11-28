@@ -1,541 +1,578 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manual Técnico da Cafeicultura Moderna — Hamally Editora</title>
-  <meta name="description" content="Protocolos de Alta Produtividade para Arábica, Conilon e Robusta com Sincronização Lunar, Automação IoT e Pós-Colheita" />
-  <meta name="theme-color" content="#0B1E2D" />
+  <meta name="description" content="Guia técnico completo sobre cafeicultura Arábica, Conilon e Robusta, nutrição de precisão, sincronização lunar e telemetria IoT." />
   <style>
     :root {
-      --bg-page: #0B1E2D;
-      --bg-deep: #07141F;
-      --bg-card: #132B3E;
-      --bg-card-alt: #17344B;
-      --accent: #E36520;
-      --accent-hover: #F27835;
-      --support: #1F7A6A;
-      --support-hover: #26927F;
-      --text-main: #F4F7FA;
-      --text-sec: #C5D3DF;
-      --text-muted: #8FA4B5;
-      --border: rgba(255, 255, 255, 0.10);
-      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-serif: Georgia, "Liberation Serif", serif;
+      --bg: #0b1120;
+      --surface: #1e293b;
+      --surface-alt: #0f172a;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --gold: #fbbf24;
+      --gold-dark: #f59e0b;
+      --green: #10b981;
+      --orange: #f97316;
+      --blue: #38bdf8;
     }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: var(--font-sans);
-      color: var(--text-main);
-      background-color: var(--bg-page);
-      background-image:
-        radial-gradient(ellipse 75% 48% at 15% 0%, rgba(31, 122, 106, 0.24) 0%, transparent 65%),
-        radial-gradient(ellipse 65% 45% at 85% 10%, rgba(227, 101, 32, 0.16) 0%, transparent 60%),
-        linear-gradient(180deg, #0D2436 0%, var(--bg-page) 52%, var(--bg-deep) 100%);
-      line-height: 1.6;
-      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
-    .container { width: min(1160px, 92%); margin: 0 auto; }
-
-    /* HEADER */
-    .site-header {
-      position: sticky; top: 0; z-index: 40;
-      background: rgba(11, 30, 45, 0.90);
-      backdrop-filter: blur(10px);
+    header {
+      background: rgba(15, 23, 42, 0.94);
       border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
     }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; padding: 0.85rem 0; flex-wrap: wrap;
-    }
-    .brand {
-      display: flex; align-items: center; gap: 0.85rem;
-      text-decoration: none; color: var(--text-main);
-    }
-    .brand-logo-circle {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: #F6F4EE; border: 2px solid var(--accent);
-      padding: 5px; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.38), 0 0 0 3px rgba(227,101,32,0.16);
-      flex-shrink: 0;
-    }
-    .brand-logo-circle img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .brand-text strong { display: block; font-size: 1.02rem; letter-spacing: 0.04em; }
-    .brand-text span { display: block; font-size: 0.78rem; color: var(--text-muted); }
-    .header-actions { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
-    .nav-links { display: flex; gap: 1rem; align-items: center; }
-    .nav-links a {
-      color: var(--text-sec); text-decoration: none; font-size: 0.88rem; font-weight: 600;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #ffffff; }
-    .lang-switcher { display: flex; gap: 0.3rem; background: rgba(19,43,62,0.9); padding: 3px; border-radius: 999px; border: 1px solid var(--border); }
-    .lang-pill {
-      text-decoration: none; color: var(--text-muted); font-size: 0.74rem; font-weight: 700;
-      padding: 0.22rem 0.58rem; border-radius: 999px; transition: all 0.2s;
-    }
-    .lang-pill.active, .lang-pill:hover { background: var(--accent); color: #ffffff; }
-
-    /* HERO */
-    .hero { padding: 3rem 0 2.8rem; }
-    .hero-grid {
-      display: grid; grid-template-columns: minmax(260px, 420px) 1fr;
-      gap: 2.8rem; align-items: center;
-    }
-    .hero-mockup-wrap {
-      display: flex; justify-content: center; align-items: center;
-      position: relative;
-    }
-    .hero-mockup-wrap::before {
-      content: ""; position: absolute; width: 78%; height: 78%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(31,122,106,0.34) 0%, rgba(227,101,32,0.12) 48%, transparent 72%);
-      filter: blur(18px); z-index: 0;
-    }
-    .hero-mockup {
-      position: relative; z-index: 1;
-      width: min(100%, 390px); height: auto;
-      filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.55));
-      transition: transform 0.35s ease;
-    }
-    .hero-mockup:hover { transform: translateY(-6px) scale(1.02); }
-    .kicker-badge {
-      display: inline-block;
-      background: rgba(227, 101, 32, 0.16);
-      color: #FF9C66;
-      border: 1px solid rgba(227, 101, 32, 0.45);
-      font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em;
-      padding: 0.36rem 0.82rem; border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.9rem, 3.3vw, 2.8rem);
-      line-height: 1.15; margin: 0 0 0.85rem; color: #ffffff;
-    }
-    .hero-subtitle {
-      font-size: 1.08rem; color: var(--text-sec); margin: 0 0 1.2rem; font-weight: 500;
-    }
-    .hero-synopsis {
-      background: rgba(19, 43, 62, 0.72);
-      border-left: 3px solid var(--support);
-      padding: 0.95rem 1.15rem; border-radius: 0 10px 10px 0;
-      color: var(--text-sec); font-size: 0.94rem; margin-bottom: 1.45rem;
-    }
-
-    /* BLOCO DE OFERTA DIRETA (PIX PRÓPRIO + MERCADO PAGO) */
-    .offer-box {
-      background: linear-gradient(155deg, rgba(19, 43, 62, 0.95) 0%, rgba(12, 34, 48, 0.98) 100%);
-      border: 1px solid rgba(31, 122, 106, 0.55);
-      border-radius: 14px;
-      padding: 1.25rem 1.35rem;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-    }
-    .offer-box-center {
-      max-width: 780px;
+    .nav {
+      max-width: 1120px;
       margin: 0 auto;
-      text-align: center;
-    }
-    .offer-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: #6EE7B7;
-      background: rgba(31, 122, 106, 0.24);
-      border: 1px solid rgba(31, 122, 106, 0.65);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 0.55rem;
-    }
-    .offer-price-main {
       display: flex;
-      align-items: baseline;
-      gap: 0.55rem;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
       flex-wrap: wrap;
     }
-    .offer-box-center .offer-price-main {
-      justify-content: center;
+    .brand {
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-size: 1.05rem;
+      text-decoration: none;
     }
-    .offer-price-main strong {
-      font-family: var(--font-serif);
-      font-size: clamp(1.85rem, 3vw, 2.35rem);
-      line-height: 1.05;
-      color: #FFFFFF;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
     }
-    .offer-price-main span {
-      font-size: 1rem;
+    .lang-btn {
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
       font-weight: 700;
-      color: #5EEAD4;
-    }
-    .offer-installments {
-      margin: 0.25rem 0 1.05rem;
-      font-size: 0.9rem;
-      color: var(--text-sec);
-    }
-
-    .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .cta-row-center { justify-content: center; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      text-decoration: none; font-weight: 700; font-size: 0.92rem;
-      padding: 0.88rem 1.3rem; border-radius: 10px; transition: all 0.22s ease;
-      cursor: pointer; border: 1px solid transparent;
-    }
-    .btn-pix {
-      background: linear-gradient(135deg, #25947E 0%, var(--support) 100%);
-      color: #ffffff;
-      box-shadow: 0 10px 24px rgba(31, 122, 106, 0.36);
-    }
-    .btn-pix:hover { background: var(--support-hover); transform: translateY(-2px); }
-    .btn-primary {
-      background: var(--accent); color: #ffffff;
-      box-shadow: 0 10px 24px rgba(227, 101, 32, 0.32);
-    }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-sec);
-      border-color: rgba(255, 255, 255, 0.22);
-    }
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.10);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-    .alt-checkout-row {
-      margin-top: 0.8rem;
       font-size: 0.8rem;
+      cursor: pointer;
     }
-    .alt-checkout-link {
-      color: var(--text-muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color 0.2s;
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--surface-alt);
+      border-color: var(--gold);
     }
-    .alt-checkout-link:hover { color: #FF9C66; }
-
-    .hero-meta-strip {
-      display: flex; gap: 1.35rem; flex-wrap: wrap;
-      margin-top: 1.15rem; font-size: 0.84rem; color: var(--text-muted);
+    .btn-portal {
+      background: transparent;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 0.35rem;
     }
-
-    /* SECTIONS */
-    .section { padding: 2.8rem 0; border-top: 1px solid var(--border); }
-    .section-head { margin-bottom: 1.6rem; }
-    .section-head h2 {
-      font-family: var(--font-serif); font-size: 1.75rem; margin: 0 0 0.35rem; color: #ffffff;
+    .btn-portal:hover {
+      background: rgba(56, 189, 248, 0.12);
     }
-    .section-head p { margin: 0; color: var(--text-muted); font-size: 0.96rem; }
-
-    .chapters-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1.15rem;
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
     }
-    .chapter-card {
-      background: var(--bg-card);
+    .hero {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 840px) {
+      .hero { grid-template-columns: 1fr; }
+      .cover-box { max-width: 290px; margin: 0 auto; }
+    }
+    .cover-box {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1.25rem;
-      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
     }
-    .chapter-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(227, 101, 32, 0.45);
-      background: var(--bg-card-alt);
+    .cover-box img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
     }
-    .chapter-num {
-      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #FF9C66; margin-bottom: 0.35rem;
+    .cover-meta {
+      margin-top: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
-    .chapter-title { font-size: 1.02rem; margin: 0 0 0.65rem; color: #ffffff; line-height: 1.35; }
-    .chapter-topics {
-      margin: 0; padding-left: 1.1rem; color: var(--text-sec); font-size: 0.84rem;
+    .tag {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
     }
-    .chapter-topics li { margin-bottom: 0.3rem; }
-
-    .details-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; align-items: start;
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+      color: #fff;
     }
-    .panel-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.5rem;
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0 0 1.5rem;
     }
-    .panel-card h3 {
-      font-family: var(--font-serif); font-size: 1.28rem; margin: 0 0 1rem; color: #ffffff;
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
-    .audience-list { margin: 0; padding-left: 1.2rem; color: var(--text-sec); }
-    .audience-list li { margin-bottom: 0.65rem; }
-
-    .specs-list { display: flex; flex-direction: column; gap: 0.65rem; }
-    .spec-row {
-      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-      padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+    @media (max-width: 980px) {
+      .plans-grid { grid-template-columns: 1fr; }
+    }
+    .plan-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .plan-card.featured {
+      border: 2px solid var(--green);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08), var(--surface));
+    }
+    .plan-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 0.4rem;
+    }
+    .plan-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+    }
+    .plan-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0.5rem 0;
+      color: #fff;
+    }
+    .plan-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 1.25rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+    .plan-list li {
+      margin-bottom: 0.45rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .plan-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+    .plan-list li.no::before {
+      content: "—";
+      color: var(--muted);
+    }
+    .plan-list li.no {
+      color: var(--muted);
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.82rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
       font-size: 0.9rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
     }
-    .spec-row span { color: var(--text-muted); }
-    .spec-row strong { color: #ffffff; text-align: right; }
-
-    .bonus-grid { display: flex; flex-direction: column; gap: 0.95rem; margin-top: 1.2rem; }
-    .bonus-item { display: flex; gap: 0.85rem; align-items: flex-start; }
-    .bonus-dot {
-      width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(31, 122, 106, 0.28); border: 1px solid var(--support);
-      color: #5EEAD4; font-weight: 800; font-size: 0.82rem;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      margin-top: 2px;
+    .btn-kdp-ebook {
+      background: var(--gold-dark);
+      color: var(--surface-alt);
     }
-    .bonus-item strong { display: block; color: #ffffff; font-size: 0.94rem; }
-    .bonus-item p { margin: 0.15rem 0 0; color: var(--text-muted); font-size: 0.85rem; }
-
-    .cover-preview-card {
-      margin-top: 1.5rem; text-align: center;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.25rem;
+    .btn-kdp-ebook:hover { background: var(--gold); }
+    .btn-kdp-print {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
     }
-    .cover-preview-card img {
-      width: min(100%, 280px); height: auto; border-radius: 8px;
-      box-shadow: 0 16px 32px rgba(0,0,0,0.5);
+    .btn-kdp-print:hover { background: rgba(251, 191, 36, 0.12); }
+    .btn-hotmart {
+      background: var(--orange);
+      color: #fff;
     }
-    .cover-preview-card span {
-      display: block; margin-top: 0.7rem; font-size: 0.8rem; color: var(--text-muted);
+    .btn-hotmart:hover { filter: brightness(1.08); }
+    .btn-pix {
+      background: var(--green);
+      color: var(--surface-alt);
     }
-
-    .cta-banner {
-      background: linear-gradient(135deg, #132B3E 0%, #0F3542 100%);
-      border: 1px solid rgba(227, 101, 32, 0.35);
-      border-radius: 18px; padding: 2.2rem 1.8rem; text-align: center;
+    .btn-pix:hover { filter: brightness(1.08); }
+    .support-bar {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    .cta-banner h2 { font-family: var(--font-serif); margin: 0 0 0.5rem; font-size: 1.65rem; }
-    .cta-banner > p { margin: 0 auto 1.4rem; max-width: 680px; color: var(--text-sec); }
-
-    .site-footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-deep);
-      padding: 1.8rem 0; margin-top: 2rem;
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 999;
     }
-    .footer-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 1rem; flex-wrap: wrap; font-size: 0.88rem; color: var(--text-muted);
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 420px;
+      width: 100%;
+      padding: 1.75rem;
+      text-align: center;
     }
-    .footer-inner a { color: #FF9C66; text-decoration: none; font-weight: 700; }
-    .footer-inner a:hover { text-decoration: underline; }
-
-    @media (max-width: 860px) {
-      .hero-grid, .details-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 2rem; }
-      .nav-links { display: none; }
+    .modal-box input, .modal-box textarea {
+      width: 100%;
+      background: var(--surface-alt);
+      color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-top: 0.65rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="https://livros.hamally.store/" class="brand">
-        <div class="brand-logo-circle">
-          <img src="logo.svg" alt="Hamally Editora" />
-        </div>
-        <div class="brand-text">
-          <strong>HAMALLY EDITORA</strong>
-          <span>Willian Corrêa de Moraes</span>
-        </div>
-      </a>
-      <div class="header-actions">
-        <nav class="nav-links">
-          <a href="#conteudo">Conteúdo da Obra</a>
-          <a href="#especificacoes">Especificações</a>
-          <a href="https://livros.hamally.store/">Catálogo Completo</a>
-        </nav>
-        <div class="lang-switcher" aria-label="Idioma">
-          <a href="index.html" class="lang-pill active">PT</a><a href="index_en.html" class="lang-pill">EN</a><a href="index_es.html" class="lang-pill">ES</a>
-        </div>
+
+  <header>
+    <div class="nav">
+      <a href="/" class="brand">HAMALLY EDITORA</a>
+      <div class="nav-actions">
+        <button class="lang-btn active" id="btn-pt" onclick="mudarIdioma('pt')">PT</button>
+        <button class="lang-btn" id="btn-en" onclick="mudarIdioma('en')">EN</button>
+        <button class="lang-btn" id="btn-es" onclick="mudarIdioma('es')">ES</button>
+        <a href="https://app.hamally.store" class="btn-portal" id="nav-portal">Área de Apoio</a>
       </div>
     </div>
   </header>
 
-  <main>
+  <main class="container">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-mockup-wrap">
-          <img src="mockup_3d_estatica_pt.png" alt="Manual Técnico da Cafeicultura Moderna" class="hero-mockup" />
-        </div>
-        <div>
-          <span class="kicker-badge">ENGENHARIA AGRONÔMICA • ARÁBICA, CONILON &amp; ROBUSTA</span>
-          <h1 class="hero-title">Manual Técnico da Cafeicultura Moderna</h1>
-          <p class="hero-subtitle">Protocolos de Alta Produtividade para Arábica, Conilon e Robusta com Sincronização Lunar, Automação IoT e Pós-Colheita</p>
-          <div class="hero-synopsis">
-            <strong>Sobre Esta Publicação:</strong> O Manual Técnico da Cafeicultura Moderna substitui o manejo empírico por protocolos quantitativos auditáveis do viveiro à exportação. Reúne ecofisiologia comparada de Coffea arabica e Coffea canephora (Conilon e Robusta), nutrição de precisão, sincronização biofísica lunar, déficit hídrico controlado (RDI), automação IoT em campo, engenharia pós-colheita (Natural, CD, Honey e biorreatores anaeróbios), termodinâmica de torra, protocolos sensoriais SCA/CQI, custos CONAB/CEPEA, rastreabilidade EUDR desmatamento-zero e estratégia de hedge 33/33/34.
+      <div class="cover-box">
+        <img id="book-cover" src="./assets/capa_pt.png" alt="Capa do Livro" onerror="this.src='https://placehold.co/420x600/0f172a/fbbf24?text=HAMALLY+EDITORA'" />
+        <div class="cover-meta" id="book-specs">Formato 7" × 10" • Edição em Português</div>
+      </div>
+
+      <div>
+        <span class="tag" id="book-tag">ENGENHARIA AGRONÔMICA & AUTOMAÇÃO</span>
+        <h1 id="book-title">Manual Técnico da Cafeicultura Moderna</h1>
+        <p class="subtitle" id="book-subtitle">
+          Manejo de alta performance para café Conilon, Arábica e Robusta, nutrição de precisão, sincronização lunar e telemetria IoT aplicada ao campo.
+        </p>
+
+        <div class="plans-grid">
+          <!-- CARD 1: AMAZON KDP -->
+          <div class="plan-card">
+            <div>
+              <div class="plan-badge" style="color: var(--gold);" id="kdp-badge">Amazon KDP • Edição Econômica</div>
+              <h2 class="plan-title" id="kdp-title">Kindle ou Livro Impresso</h2>
+              <div class="plan-price" id="kdp-price">R$ 29,90</div>
+              <ul class="plan-list" id="kdp-features">
+                <li>Leitura imediata no Kindle / App</li>
+                <li>Opção de livro físico impresso sob demanda</li>
+                <li class="no">Sem planilhas e material didático</li>
+                <li class="no">Sem série de áudios narrados</li>
+              </ul>
+            </div>
+            <div>
+              <a id="link-kdp-ebook" href="#" target="_blank" rel="noopener" class="btn btn-kdp-ebook">Comprar eBook na Amazon KDP</a>
+              <a id="link-kdp-print" href="#" target="_blank" rel="noopener" class="btn btn-kdp-print">Comprar Livro Impresso (KDP)</a>
+            </div>
           </div>
-          
-          <div class="offer-box">
-            <div class="offer-badge">VENDA DIRETA • PIX TAXA ZERO • APROVAÇÃO INSTANTÂNEA</div>
-            <div class="offer-price-main">
-              <strong>R$ 67,00</strong>
-              <span>à vista no Pix</span>
+
+          <!-- CARD 2: HOTMART -->
+          <div class="plan-card">
+            <div>
+              <div class="plan-badge" style="color: var(--orange);" id="hotmart-badge">Hotmart • Edição Técnica</div>
+              <h2 class="plan-title" id="hotmart-title">Livro PDF + Material Didático</h2>
+              <div class="plan-price" id="hotmart-price">R$ 39,90</div>
+              <ul class="plan-list" id="hotmart-features">
+                <li>Livro completo em PDF (alta resolução)</li>
+                <li>Planilhas, calculadoras e checklists técnicos</li>
+                <li>Material didático liberado após 7 dias</li>
+                <li class="no">Sem série de áudios narrados</li>
+              </ul>
             </div>
-            <div class="offer-installments">ou em até 6x (incluindo Pix Parcelado Mercado Pago)</div>
-            <div class="cta-row">
-              <a href="https://app.hamally.store/checkout.html?livro=manual-tecnico-da-cafeicultura-moderna&amp;metodo=pix_proprio&amp;idioma=pt" class="btn btn-pix">Comprar à Vista no Pix (Liberação Imediata)</a>
-              <a href="https://app.hamally.store/checkout.html?livro=manual-tecnico-da-cafeicultura-moderna&amp;metodo=mercadopago&amp;idioma=pt" class="btn btn-primary">Pix Parcelado / Cartão (Mercado Pago)</a>
-              <a href="https://app.hamally.store/membros.html?livro=manual-tecnico-da-cafeicultura-moderna" target="_blank" rel="noopener" class="btn btn-outline">Portal de Material de Apoio</a>
-            </div>
-            <div class="alt-checkout-row">
-              <a href="#LINK_HOTMART_OPCIONAL" class="alt-checkout-link">Prefere comprar pela Hotmart? Clique aqui</a>
+            <div>
+              <a id="link-hotmart" href="#" target="_blank" rel="noopener" class="btn btn-hotmart">Comprar na Hotmart</a>
             </div>
           </div>
-          <div class="hero-meta-strip">
-            <span>📘 10 módulos • 184 pág.</span>
-            <span>📐 7&quot; × 10&quot; (17,78 × 25,40 cm) • Padrão Técnico KDP &amp; Digital</span>
+
+          <!-- CARD 3: SITE OFICIAL PIX -->
+          <div class="plan-card featured">
+            <div>
+              <div class="plan-badge" style="color: var(--green);" id="site-badge">Site Oficial • Pacote Completo</div>
+              <h2 class="plan-title" id="site-title">Livro + Kit Didático + Áudios</h2>
+              <div class="plan-price" id="site-price">R$ 49,90</div>
+              <ul class="plan-list" id="site-features">
+                <li>Download imediato da Apostila e Capa PDF</li>
+                <li>Download imediato de todo o Material Didático</li>
+                <li>Acesso à série de áudios narrados (1/dia)</li>
+                <li>Liberação direta no Portal do Leitor</li>
+              </ul>
+            </div>
+            <div>
+              <button onclick="abrirPix()" class="btn btn-pix" id="btn-comprar-pix">Comprar no Site (Pix)</button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="conteudo">
-      <div class="container">
-        <div class="section-head">
-          <h2>Estrutura de Capítulos &amp; Módulos</h2>
-          <p>Conteúdo técnico aprofundado extraído diretamente dos capítulos da edição oficial.</p>
-        </div>
-        <div class="chapters-grid">
-          
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 01</div>
-          <h3 class="chapter-title">Capítulo 1 — Fisiologia Comparada e Ecofisiologia de Coffea arabica, Coffea canephora (Conilon e Robusta)</h3>
-          <ul class='chapter-topics'><li>1.1 Bases Genéticas, Citogenéticas e Morfoanatômicas: Tetraploidia (C. arabica) versus Diploidia Alógama (C. canephora Grupos Conilon e Robusta)</li><li>1.2 Arquitetura Radicular, Dimorfismo de Ramos (Ortotrópicos e Plagiotrópicos) e Dinâmica de Crescimento Vegetativo</li><li>1.3 Metabolismo Fotossintético C3, Condutância Estomática, Ponto de Compensação Luminosa e Respostas ao Déficit de Pressão de Vapor (DPV)</li><li>1.4 Zoneamento Agroclimático, Limiares Térmicos, Fotoperíodo Indutivo e Estresse Oxidativo por Altas e Baixas Temperaturas</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 02</div>
-          <h3 class="chapter-title">Capítulo 2 — Implantação, Propagação Clonal, Viveiros Tecnificados e Nutrição Mineral de Precisão</h3>
-          <ul class='chapter-topics'><li>2.1 Engenharia de Implantação: Sistematização Topográfica, Arruamento Nivelado, Subsolagem Profunda e Arranjos Espaciais de Plantio</li><li>2.2 Propagação Seminífera versus Propagação Clonal: Jardins Clonais Superadensados, Estaquia Ortotrópica, Miniestaquia e Embriogênese Somática</li><li>2.3 Engenharia de Viveiros Tecnificados: Substratos Estabilizados, Ambiência, Irrigação por Microaspersão, Poda de Raízes e Aclimatação (Rustificação)</li><li>2.4 Compatibilidade Genética em Policlones de C. canephora, Sincronia de Florescimento e Polinização Cruzada Dirigida</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 03</div>
-          <h3 class="chapter-title">Capítulo 3 — Sincronização Lunar Aplicada à Cafeicultura: Fases Sinódicas, Dinâmica de Seiva, Poda, Plantio e Colheita</h3>
-          <ul class='chapter-topics'><li>3.1 Fundamentos Biofísicos dos Ciclos Lunares na Fisiologia Vegetal: Ciclo Sinódico (29,53 dias), Ciclo Anomalístico (Perigeu/Apogeu) e Ciclo Trópico (Lunisticial)</li><li>3.2 Forças Gravitacionais de Maré, Potencial Matricial da Água no Solo, Pressão Radicular e Fluxo Xilemático/Floemático da Seiva</li><li>3.3 Fotomorfogênese Noturna: Luminosidade Lunar, Fitocromos (Pr / Pfr), Ritmos Circadianos Endógenos e Emissão de Raízes Finas</li><li>3.4 Protocolos Lunares para Estaquia, Enraizamento em Viveiro, Transplantio no Campo e Adubação Foliar/Via Solo</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 04</div>
-          <h3 class="chapter-title">Capítulo 4 — Manejo Hídrico, Irrigação Localizada, Fertirrigação e Controle de Déficit Hídrico</h3>
-          <ul class='chapter-topics'><li>4.1 Relações Hídricas no Sistema Solo-Planta-Atmosfera (SPAC): Potencial Hídrico Foliar (Ψw), Curva de Retenção de Água no Solo (CRA) e Água Facilmente Disponível (AFD)</li><li>4.2 Evapotranspiração da Cultura (ETc), Equação de Penman-Monteith (FAO-56) e Coeficientes de Cultura (Kc e KL) para Arábica, Conilon e Robusta</li><li>4.3 Dimensionamento Hidráulico de Irrigação Localizada (Gotejamento Superficial e Subsuperficial): Perda de Carga, Coeficiente de Uniformidade de Christiansen (CUC) e Uniformidade de Distribuição (CUD)</li><li>4.4 Estratégias de Déficit Hídrico Controlado (RDI): Estresse Hídrico Programado no Pré-Florescimento para Uniformização da Antese e Concentração de Maturação</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 05</div>
-          <h3 class="chapter-title">Capítulo 5 — Arquitetura de Automação IoT no Campo: Sensores de Solo/Clima, Telemetria sem Fio, Malhas de Controle e Balanço Energético</h3>
-          <ul class='chapter-topics'><li>5.1 Instrumentação Agrometeorológica e Edáfica: Sensores Capacitivos (FDR/TDR), Tensiômetros Eletrônicos, Sondas Multiparamétricas (CE, Temperatura, pH) e Dendrômetros</li><li>5.2 Redes de Sensores sem Fio (WSN) em Topografias Acidentadas e Sombreadas: Modulação de Espectro Espalhado, Orçamento de Enlace (Link Budget), Zona de Fresnel e Topologias Mesh/Estrela</li><li>5.3 Gateways de Borda (Edge Computing), Protocolos de Telemetria Leve (MQTT, CoAP, Modbus RTU/RS-485) e Tolerância a Falhas Offline</li><li>5.4 Malhas de Controle Fechado (PID e Lógica Fuzzy) para Acionamento Autônomo de Válvulas Solenoides, Bombas com Inversor de Frequência e Dosadores de Fertirrigação</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 06</div>
-          <h3 class="chapter-title">Capítulo 6 — Manejo Integrado de Pragas, Doenças e Bioestimulação Fisiológica de Baixo Impacto</h3>
-          <ul class='chapter-topics'><li>6.1 Epidemiologia e Níveis de Dano Econômico (NDE) das Principais Pragas: Broca-do-Café (Hypothenemus hampei), Bicho-Mineiro (Leucoptera coffeella), Ácaros e Cochonilhas</li><li>6.2 Etiologia e Modelagem Climática de Doenças Fúngicas e Bacterianas: Ferrugem (Hemileia vastatrix), Cercosporiose, Phoma, Mancha-Manteigosa e Nematoides (Meloidogyne spp.)</li><li>6.3 Amostragem Sistemática por Talhão, Monitoramento por Armadilhas Semioquímicas e Índices de Infestação Georreferenciados</li><li>6.4 Controle Biológico Aplicado e Conservativo: Fungos Entomopatogênicos (Beauveria bassiana, Metarhizium anisopliae), Bacillus spp., Trichoderma spp. e Parasitoides</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 07</div>
-          <h3 class="chapter-title">Capítulo 7 — Maturação Fisiológica, Ponto Ótimo de Colheita Seletiva e Mecanizada</h3>
-          <ul class='chapter-topics'><li>7.1 Bioquímica da Maturação do Fruto: Evolução de Açúcares Redutores e Não Redutores, Ácidos Clorogênicos, Trigonelina, Cafeína, Lipídios e Compostos Voláteis Precursores</li><li>7.2 Cinética da Força de Desprendimento Físico do Pedúnculo (FDF) em Frutos Verdes e Cerejas e Índices de Maturação Ótima (°Brix, Relação °Brix/Acidez e Colorimetria CIELAB)</li><li>7.3 Planejamento Operacional de Colheita: Estimativa de Safra por Amostragem Estratificada, Mapeamento de Maturação e Escalonamento de Talhões por Ciclo (Precoce, Médio e Tardio)</li><li>7.4 Modalidades de Colheita: Derriça Manual Seletiva no Pano, Colheita Semimecanizada (Derriçadores Portáteis e Tratorizados) e Colhedoras Automotrizes</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 08</div>
-          <h3 class="chapter-title">Capítulo 8 — Engenharia Pós-Colheita: Via Seca, Via Úmida, Fermentação Controlada e Secagem de Precisão</h3>
-          <ul class='chapter-topics'><li>8.1 Engenharia da Unidade de Beneficiamento Úmido: Recepção na Moega, Abanação, Lavador Hidráulico de Fluxo Contínuo e Separação Densimétrica (Boia vs. Cereja/Verde)</li><li>8.2 Processamentos Clássicos e Híbridos: Via Seca (Natural), Descascado (CD), Despolpado (Washed) e Desmucilado Mecânico/Semilavado (Honey: Yellow, Red e Black)</li><li>8.3 Biotecnologia da Fermentação Controlada: Microbiologia Indígena vs. Culturas Iniciadoras (Leveduras e Bactérias Láticas), Biorreatores Aeróbios e Anaeróbios, Maceração Carbônica e Monitoramento de pH, °Brix e Temperatura</li><li>8.4 Termodinâmica e Psicrometria da Secagem do Café: Curvas de Dessorção, Água Livre vs. Água Ligada, Taxa de Secagem e Limites Térmicos da Massa de Grãos (≤ 40 °C para Cafés Especiais)</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 09</div>
-          <h3 class="chapter-title">Capítulo 9 — Classificação Física, Análise Sensorial (Protocolo SCA/CQI), Torra Técnica e Rastreabilidade</h3>
-          <ul class='chapter-topics'><li>9.1 Classificação Física Oficial (COB e Padrões Internacionais Green Coffee): Tabela de Defeitos Intrínsecos (Tipo 1) e Extrínsecos (Tipo 2), Equivalência de Pontos, Peneiras Granulométricas (Chato e Moca), Cor e Aspecto</li><li>9.2 Física e Química da Torra de Amostra e Torra Comercial: Transferência de Calor (Condução, Convecção e Radiação), Reações de Maillard, Degradação de Strecker, Caramelização, Pirólise, First Crack e Development Time Ratio (DTR)</li><li>9.3 Protocolos Internacionais de Análise Sensorial: Metodologia para Coffea arabica (Specialty Coffee) e Protocolo Específico para Coffea canephora (Fine Robusta / Conilon Especial)</li><li>9.4 Atributos Sensoriais Quantitativos e Qualitativos: Fragrância/Aroma, Sabor, Finalização, Acidez, Corpo, Equilíbrio, Doçura, Uniformidade, Xícara Limpa e Calibração de Painel de Provadores</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 10</div>
-          <h3 class="chapter-title">Capítulo 10 — Gestão Econômica, Custos de Produção por Hectare, Certificações e Comercialização Global</h3>
-          <ul class='chapter-topics'><li>10.1 Estrutura de Custos na Cafeicultura segundo a Metodologia CONAB/CEPEA: Custo Operacional Efetivo (COE), Custo Operacional Total (COT) e Custo Total (CT) por Hectare e por Saca Beneficiada (60 kg)</li><li>10.2 Modelagem de Viabilidade Financeira de Lavouras Perenes: Fluxo de Caixa Descontado (15–20 anos), Valor Presente Líquido (VPL), Taxa Interna de Retorno (TIR), Payback Descontado e Custo da Bienalidade</li><li>10.3 Indicadores de Eficiência Operacional e Produtividade: Sacas/ha, Rendimento de Coco/Cereja para Café Beneficiado (Renda), Produtividade da Mão de Obra e Custo Hora-Máquina</li><li>10.4 Certificações Socioambientais, Rastreabilidade Desmatamento-Zero e Créditos de Carbono: Requisitos de Conformidade, Balanço de Gases de Efeito Estufa (GEE) e Sequestro de Carbono no Solo e Biomassa</li></ul>
-        </article>
+    <div class="support-bar">
+      <div>
+        <strong style="color: var(--gold);" id="support-title">Já adquiriu sua edição na Hotmart ou no Site Oficial?</strong>
+        <div style="font-size: 0.88rem; color: var(--muted);" id="support-desc">
+          Insira o código da sua compra no Portal do Leitor para baixar seus arquivos ou ouvir os capítulos narrados.
         </div>
       </div>
-    </section>
-
-    <section class="section" id="especificacoes">
-      <div class="container details-grid">
-        <div>
-          <div class="panel-card">
-            <h3>Público-Alvo</h3>
-            <ul class="audience-list">
-              <li>Profissionais, engenheiros, técnicos e especialistas que buscam protocolos quantitativos aplicáveis em campo.</li><li>Pesquisadores, consultores e docentes que necessitam de referência técnica estruturada e auditável.</li><li>Gestores e tomadores de decisão focados em eficiência operacional, qualidade e autonomia tecnológica.</li>
-            </ul>
-          </div>
-          <div class="panel-card" style="margin-top: 1.5rem;">
-            <h3>Bônus e Recursos Inclusos</h3>
-            <div class="bonus-grid">
-              <div class="bonus-item">
-          <div class="bonus-dot">✓</div>
-          <div>
-            <strong>Acesso ao Portal de Material de Apoio</strong>
-            <p>Materiais complementares, atualizações técnicas e recursos digitais vinculados à obra.</p>
-          </div>
-        </div><div class="bonus-item">
-          <div class="bonus-dot">✓</div>
-          <div>
-            <strong>Edição Ilustrada em Alta Definição (300 DPI)</strong>
-            <p>Diagramas técnicos, tabelas comparativas e fluxogramas concebidos para leitura clara.</p>
-          </div>
-        </div><div class="bonus-item">
-          <div class="bonus-dot">✓</div>
-          <div>
-            <strong>Versão Digital Pronta para Consulta</strong>
-            <p>PDF técnico otimizado para desktop, tablet e impressão profissional.</p>
-          </div>
-        </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="panel-card">
-            <h3>Especificações Técnicas</h3>
-            <div class="specs-list">
-              <div class='spec-row'><span>Autoria</span><strong>Willian Corrêa de Moraes</strong></div><div class='spec-row'><span>Selo Editorial</span><strong>Hamally Editora</strong></div><div class='spec-row'><span>Formato Editorial</span><strong>7&quot; × 10&quot; (17,78 × 25,40 cm) • Padrão Técnico KDP &amp; Digital</strong></div><div class='spec-row'><span>Idioma desta Página</span><strong>Português (pt-BR)</strong></div><div class='spec-row'><span>Edição</span><strong>1ª Edição Técnica • 2026</strong></div><div class='spec-row'><span>Extensão</span><strong>10 módulos • 184 pág.</strong></div>
-            </div>
-          </div>
-          <div class="cover-preview-card">
-            <img src="capa_estatica_pt.png" alt="Manual Técnico da Cafeicultura Moderna" />
-            <span>Capa Oficial da Edição</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="oferta">
-      <div class="container">
-        <div class="cta-banner">
-          <h2>Garanta sua edição com entrega imediata e sem taxas extras</h2>
-          <p>Escolha o Pix Próprio à vista (liberação instantânea) ou parcele via Mercado Pago com acesso imediato ao Portal do Leitor.</p>
-          
-          <div class="offer-box offer-box-center">
-            <div class="offer-badge">VENDA DIRETA • PIX TAXA ZERO • APROVAÇÃO INSTANTÂNEA</div>
-            <div class="offer-price-main">
-              <strong>R$ 67,00</strong>
-              <span>à vista no Pix</span>
-            </div>
-            <div class="offer-installments">ou em até 6x (incluindo Pix Parcelado Mercado Pago)</div>
-            <div class="cta-row cta-row-center">
-              <a href="https://app.hamally.store/checkout.html?livro=manual-tecnico-da-cafeicultura-moderna&amp;metodo=pix_proprio&amp;idioma=pt" class="btn btn-pix">Comprar à Vista no Pix (Liberação Imediata)</a>
-              <a href="https://app.hamally.store/checkout.html?livro=manual-tecnico-da-cafeicultura-moderna&amp;metodo=mercadopago&amp;idioma=pt" class="btn btn-primary">Pix Parcelado / Cartão (Mercado Pago)</a>
-              <a href="https://app.hamally.store/membros.html?livro=manual-tecnico-da-cafeicultura-moderna" target="_blank" rel="noopener" class="btn btn-outline">Portal de Material de Apoio</a>
-            </div>
-            <div class="alt-checkout-row">
-              <a href="#LINK_HOTMART_OPCIONAL" class="alt-checkout-link">Prefere comprar pela Hotmart? Clique aqui</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <a href="https://app.hamally.store" class="btn btn-portal" style="width: auto; margin: 0;" id="support-btn">
+        Acessar Área de Apoio →
+      </a>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <a href="https://livros.hamally.store/">← Voltar ao Catálogo Completo (livros.hamally.store)</a>
-      <span>© 2026 Hamally Editora • Willian Corrêa de Moraes. Todos os direitos reservados.</span>
+  <!-- MODAL PIX PROPRIO -->
+  <div id="modal-pix" class="modal-backdrop">
+    <div class="modal-box">
+      <h3 style="color: var(--gold); margin: 0 0 0.5rem;">Pagamento Pix — Hamally Editora</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); margin: 0 0 0.75rem;" id="pix-resumo"></p>
+
+      <div id="pix-etapa-1">
+        <input id="pix-email" type="email" placeholder="Digite seu e-mail para vincular o pedido" />
+        <button onclick="gerarPix()" class="btn btn-kdp-ebook" style="margin-top: 0.85rem;">Gerar QR Code Pix</button>
+      </div>
+
+      <div id="pix-etapa-2" style="display: none;">
+        <img id="pix-qr" alt="QR Code Pix" style="width: 210px; height: 210px; background: #fff; padding: 8px; border-radius: 8px; margin-top: 0.5rem;" />
+        <p style="font-size: 0.85rem; margin: 0.65rem 0 0.25rem;">Código do Pedido: <strong id="pix-codigo" style="color: var(--gold);"></strong></p>
+        <textarea id="pix-copia" readonly rows="3" style="font-size: 0.72rem; color: var(--muted);"></textarea>
+        <button onclick="copiarPix()" class="btn" style="background: var(--blue); color: var(--surface-alt);">Copiar Código Pix</button>
+        <p id="pix-status-msg" style="font-size: 0.85rem; color: var(--gold); margin-top: 0.85rem;">⏳ Aguardando confirmação do pagamento...</p>
+      </div>
+
+      <button onclick="fecharPix()" style="margin-top: 0.85rem; background: transparent; border: none; color: var(--muted); cursor: pointer;">Fechar</button>
     </div>
-  </footer>
+  </div>
+
+  <script>
+    const CONFIG_LIVRO = {
+      slug: "manual-tecnico-da-cafeicultura-moderna",
+      idiomas: {
+        pt: {
+          tag: "ENGENHARIA AGRONÔMICA & AUTOMAÇÃO",
+          titulo: "Manual Técnico da Cafeicultura Moderna",
+          subtitulo: "Manejo de alta performance para café Conilon, Arábica e Robusta, nutrição de precisão, sincronização lunar e telemetria IoT aplicada ao campo.",
+          capa: "./assets/capa_pt.png",
+          specs: 'Formato 7" × 10" • Edição em Português',
+          valorPix: 49.90,
+          precoKdp: "R$ 29,90",
+          precoHotmart: "R$ 39,90",
+          precoSite: "R$ 49,90",
+          urlKdpEbook: "https://www.amazon.com.br/dp/SEU_ASIN_EBOOK_PT",
+          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_PT",
+          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_PT",
+          btnKdpEbook: "Comprar eBook na Amazon KDP",
+          btnKdpPrint: "Comprar Livro Impresso (KDP)",
+          btnHotmart: "Comprar na Hotmart",
+          btnSite: "Comprar no Site (Pix)",
+          portal: "Área de Apoio",
+          supportTitle: "Já adquiriu sua edição na Hotmart ou no Site Oficial?",
+          supportDesc: "Insira o código da sua compra no Portal do Leitor para baixar seus arquivos ou ouvir os capítulos narrados.",
+          supportBtn: "Acessar Área de Apoio →"
+        },
+        en: {
+          tag: "AGRONOMIC ENGINEERING & IOT AUTOMATION",
+          titulo: "Technical Manual of Modern Coffee Cultivation",
+          subtitulo: "High-performance management for Conilon, Arabica, and Robusta coffee, precision nutrition, lunar synchronization, and field IoT telemetry.",
+          capa: "./assets/capa_en.png",
+          specs: '7" × 10" Format • English Edition',
+          valorPix: 49.90,
+          precoKdp: "$ 9.90",
+          precoHotmart: "$ 14.90",
+          precoSite: "R$ 49,90 (Pix)",
+          urlKdpEbook: "https://www.amazon.com/dp/SEU_ASIN_EBOOK_EN",
+          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_EN",
+          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_EN",
+          btnKdpEbook: "Buy Kindle eBook on Amazon KDP",
+          btnKdpPrint: "Buy Paperback Edition (KDP)",
+          btnHotmart: "Buy on Hotmart",
+          btnSite: "Buy Direct (Pix)",
+          portal: "Reader Portal",
+          supportTitle: "Already purchased on Hotmart or our Official Store?",
+          supportDesc: "Enter your purchase code in the Reader Portal to download your files or listen to the narrated chapters.",
+          supportBtn: "Open Reader Portal →"
+        },
+        es: {
+          tag: "INGENIERÍA AGRONÓMICA Y AUTOMATIZACIÓN",
+          titulo: "Manual Técnico de la Caficultura Moderna",
+          subtitulo: "Manejo de alto rendimiento para café Conilon, Arábica y Robusta, nutrición de precisión, sincronización lunar y telemetría IoT en campo.",
+          capa: "./assets/capa_es.png",
+          specs: 'Formato 7" × 10" • Edición en Español',
+          valorPix: 49.90,
+          precoKdp: "$ 9.90",
+          precoHotmart: "$ 14.90",
+          precoSite: "R$ 49,90 (Pix)",
+          urlKdpEbook: "https://www.amazon.com/dp/SEU_ASIN_EBOOK_ES",
+          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_ES",
+          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_ES",
+          btnKdpEbook: "Comprar eBook en Amazon KDP",
+          btnKdpPrint: "Comprar Libro Impreso (KDP)",
+          btnHotmart: "Comprar en Hotmart",
+          btnSite: "Comprar en el Sitio (Pix)",
+          portal: "Área de Apoyo",
+          supportTitle: "¿Ya adquirió su edición en Hotmart o en el Sitio Oficial?",
+          supportDesc: "Ingrese el código de su compra en el Portal del Lector para descargar sus archivos o escuchar los capítulos narrados.",
+          supportBtn: "Acceder al Área de Apoyo →"
+        }
+      }
+    };
+
+    let idiomaAtual = "pt";
+    let timerStatus = null;
+
+    function mudarIdioma(idm) {
+      idiomaAtual = idm;
+      const d = CONFIG_LIVRO.idiomas[idm];
+      document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById("btn-" + idm).classList.add("active");
+
+      document.getElementById("book-tag").textContent = d.tag;
+      document.getElementById("book-title").textContent = d.titulo;
+      document.getElementById("book-subtitle").textContent = d.subtitulo;
+      document.getElementById("book-cover").src = d.capa;
+      document.getElementById("book-specs").textContent = d.specs;
+
+      document.getElementById("kdp-price").textContent = d.precoKdp;
+      document.getElementById("hotmart-price").textContent = d.precoHotmart;
+      document.getElementById("site-price").textContent = d.precoSite;
+
+      document.getElementById("link-kdp-ebook").href = d.urlKdpEbook;
+      document.getElementById("link-kdp-ebook").textContent = d.btnKdpEbook;
+      document.getElementById("link-kdp-print").href = d.urlKdpPrint;
+      document.getElementById("link-kdp-print").textContent = d.btnKdpPrint;
+
+      document.getElementById("link-hotmart").href = d.urlHotmart;
+      document.getElementById("link-hotmart").textContent = d.btnHotmart;
+      document.getElementById("btn-comprar-pix").textContent = d.btnSite;
+      document.getElementById("nav-portal").textContent = d.portal;
+
+      document.getElementById("support-title").textContent = d.supportTitle;
+      document.getElementById("support-desc").textContent = d.supportDesc;
+      document.getElementById("support-btn").textContent = d.supportBtn;
+    }
+
+    function abrirPix() {
+      const d = CONFIG_LIVRO.idiomas[idiomaAtual];
+      document.getElementById("pix-resumo").textContent = d.titulo + " (" + idiomaAtual.toUpperCase() + ") — R$ " + d.valorPix.toFixed(2);
+      document.getElementById("pix-etapa-1").style.display = "block";
+      document.getElementById("pix-etapa-2").style.display = "none";
+      document.getElementById("modal-pix").style.display = "flex";
+    }
+
+    function fecharPix() {
+      document.getElementById("modal-pix").style.display = "none";
+      if (timerStatus) clearInterval(timerStatus);
+    }
+
+    function copiarPix() {
+      const txt = document.getElementById("pix-copia").value;
+      navigator.clipboard.writeText(txt);
+      alert("Código Pix Copia e Cola copiado!");
+    }
+
+    async function gerarPix() {
+      const d = CONFIG_LIVRO.idiomas[idiomaAtual];
+      const email = document.getElementById("pix-email").value;
+      const r = await fetch("https://app.hamally.store/api/pix/criar", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          livro: CONFIG_LIVRO.slug,
+          idioma: idiomaAtual,
+          valor: d.valorPix,
+          email
+        })
+      });
+      const res = await r.json();
+      if (!res.ok) {
+        alert(res.erro || "Erro ao gerar Pix.");
+        return;
+      }
+
+      document.getElementById("pix-etapa-1").style.display = "none";
+      document.getElementById("pix-etapa-2").style.display = "block";
+      document.getElementById("pix-qr").src = res.qr_image_url;
+      document.getElementById("pix-codigo").textContent = res.codigo;
+      document.getElementById("pix-copia").value = res.pix_copia_cola;
+
+      if (timerStatus) clearInterval(timerStatus);
+      timerStatus = setInterval(async () => {
+        const st = await fetch("https://app.hamally.store/api/pix/status?codigo=" + encodeURIComponent(res.codigo));
+        const stData = await st.json();
+        if (stData.pago) {
+          clearInterval(timerStatus);
+          document.getElementById("pix-status-msg").innerHTML =
+            '✅ <strong>Pagamento Confirmado!</strong><br>' +
+            '<a href="https://app.hamally.store/?codigo=' + encodeURIComponent(res.codigo) + '" ' +
+            'class="btn btn-pix" style="margin-top:0.65rem">Acessar Apostila, Material e Áudios Agora</a>';
+        }
+      }, 5000);
+    }
+
+    mudarIdioma("pt");
+  </script>
 </body>
 </html>
