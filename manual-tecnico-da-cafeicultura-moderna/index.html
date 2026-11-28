@@ -253,6 +253,64 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
+    /* Seção de Sumário / Módulos */
+    .syllabus-section {
+      margin-top: 3.5rem;
+    }
+    .section-heading {
+      font-size: 1.45rem;
+      color: var(--gold);
+      margin: 0 0 0.4rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.75rem;
+    }
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 820px) {
+      .chapters-grid { grid-template-columns: 1fr; }
+    }
+    .chapter-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+    .chapter-num {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--blue);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+    }
+    .chapter-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.85rem;
+      line-height: 1.35;
+    }
+    .chapter-topics {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: #cbd5e1;
+      font-size: 0.86rem;
+    }
+    .chapter-topics li {
+      margin-bottom: 0.45rem;
+    }
+    /* Modal Pix */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -301,7 +359,7 @@
   <main class="container">
     <section class="hero">
       <div class="cover-box">
-        <img id="book-cover" src="./assets/capa_pt.png" alt="Capa do Livro" onerror="this.src='https://placehold.co/420x600/0f172a/fbbf24?text=HAMALLY+EDITORA'" />
+        <img id="book-cover" src="./assets/capa_estatica_pt.png" alt="Capa do Livro" onerror="this.src='https://placehold.co/420x600/0f172a/fbbf24?text=HAMALLY+EDITORA'" />
         <div class="cover-meta" id="book-specs">Formato 7" × 10" • Edição em Português</div>
       </div>
 
@@ -370,59 +428,7 @@
         </div>
       </div>
     </section>
-<div class="chapters-grid">
-          
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 01</div>
-          <h3 class="chapter-title">Capítulo 1 — Fisiologia Comparada e Ecofisiologia de Coffea arabica, Coffea canephora (Conilon e Robusta)</h3>
-          <ul class="chapter-topics"><li>1.1 Bases Genéticas, Citogenéticas e Morfoanatômicas: Tetraploidia (C. arabica) versus Diploidia Alógama (C. canephora Grupos Conilon e Robusta)</li><li>1.2 Arquitetura Radicular, Dimorfismo de Ramos (Ortotrópicos e Plagiotrópicos) e Dinâmica de Crescimento Vegetativo</li><li>1.3 Metabolismo Fotossintético C3, Condutância Estomática, Ponto de Compensação Luminosa e Respostas ao Déficit de Pressão de Vapor (DPV)</li><li>1.4 Zoneamento Agroclimático, Limiares Térmicos, Fotoperíodo Indutivo e Estresse Oxidativo por Altas e Baixas Temperaturas</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 02</div>
-          <h3 class="chapter-title">Capítulo 2 — Implantação, Propagação Clonal, Viveiros Tecnificados e Nutrição Mineral de Precisão</h3>
-          <ul class="chapter-topics"><li>2.1 Engenharia de Implantação: Sistematização Topográfica, Arruamento Nivelado, Subsolagem Profunda e Arranjos Espaciais de Plantio</li><li>2.2 Propagação Seminífera versus Propagação Clonal: Jardins Clonais Superadensados, Estaquia Ortotrópica, Miniestaquia e Embriogênese Somática</li><li>2.3 Engenharia de Viveiros Tecnificados: Substratos Estabilizados, Ambiência, Irrigação por Microaspersão, Poda de Raízes e Aclimatação (Rustificação)</li><li>2.4 Compatibilidade Genética em Policlones de C. canephora, Sincronia de Florescimento e Polinização Cruzada Dirigida</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 03</div>
-          <h3 class="chapter-title">Capítulo 3 — Sincronização Lunar Aplicada à Cafeicultura: Fases Sinódicas, Dinâmica de Seiva, Poda, Plantio e Colheita</h3>
-          <ul class="chapter-topics"><li>3.1 Fundamentos Biofísicos dos Ciclos Lunares na Fisiologia Vegetal: Ciclo Sinódico (29,53 dias), Ciclo Anomalístico (Perigeu/Apogeu) e Ciclo Trópico (Lunisticial)</li><li>3.2 Forças Gravitacionais de Maré, Potencial Matricial da Água no Solo, Pressão Radicular e Fluxo Xilemático/Floemático da Seiva</li><li>3.3 Fotomorfogênese Noturna: Luminosidade Lunar, Fitocromos (Pr / Pfr), Ritmos Circadianos Endógenos e Emissão de Raízes Finas</li><li>3.4 Protocolos Lunares para Estaquia, Enraizamento em Viveiro, Transplantio no Campo e Adubação Foliar/Via Solo</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 04</div>
-          <h3 class="chapter-title">Capítulo 4 — Manejo Hídrico, Irrigação Localizada, Fertirrigação e Controle de Déficit Hídrico</h3>
-          <ul class="chapter-topics"><li>4.1 Relações Hídricas no Sistema Solo-Planta-Atmosfera (SPAC): Potencial Hídrico Foliar (Ψw), Curva de Retenção de Água no Solo (CRA) e Água Facilmente Disponível (AFD)</li><li>4.2 Evapotranspiração da Cultura (ETc), Equação de Penman-Monteith (FAO-56) e Coeficientes de Cultura (Kc e KL) para Arábica, Conilon e Robusta</li><li>4.3 Dimensionamento Hidráulico de Irrigação Localizada (Gotejamento Superficial e Subsuperficial): Perda de Carga, Coeficiente de Uniformidade de Christiansen (CUC) e Uniformidade de Distribuição (CUD)</li><li>4.4 Estratégias de Déficit Hídrico Controlado (RDI): Estresse Hídrico Programado no Pré-Florescimento para Uniformização da Antese e Concentração de Maturação</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 05</div>
-          <h3 class="chapter-title">Capítulo 5 — Arquitetura de Automação IoT no Campo: Sensores de Solo/Clima, Telemetria sem Fio, Malhas de Controle e Balanço Energético</h3>
-          <ul class="chapter-topics"><li>5.1 Instrumentação Agrometeorológica e Edáfica: Sensores Capacitivos (FDR/TDR), Tensiômetros Eletrônicos, Sondas Multiparamétricas (CE, Temperatura, pH) e Dendrômetros</li><li>5.2 Redes de Sensores sem Fio (WSN) em Topografias Acidentadas e Sombreadas: Modulação de Espectro Espalhado, Orçamento de Enlace (Link Budget), Zona de Fresnel e Topologias Mesh/Estrela</li><li>5.3 Gateways de Borda (Edge Computing), Protocolos de Telemetria Leve (MQTT, CoAP, Modbus RTU/RS-485) e Tolerância a Falhas Offline</li><li>5.4 Malhas de Controle Fechado (PID e Lógica Fuzzy) para Acionamento Autônomo de Válvulas Solenoides, Bombas com Inversor de Frequência e Dosadores de Fertirrigação</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 06</div>
-          <h3 class="chapter-title">Capítulo 6 — Manejo Integrado de Pragas, Doenças e Bioestimulação Fisiológica de Baixo Impacto</h3>
-          <ul class="chapter-topics"><li>6.1 Epidemiologia e Níveis de Dano Econômico (NDE) das Principais Pragas: Broca-do-Café (Hypothenemus hampei), Bicho-Mineiro (Leucoptera coffeella), Ácaros e Cochonilhas</li><li>6.2 Etiologia e Modelagem Climática de Doenças Fúngicas e Bacterianas: Ferrugem (Hemileia vastatrix), Cercosporiose, Phoma, Mancha-Manteigosa e Nematoides (Meloidogyne spp.)</li><li>6.3 Amostragem Sistemática por Talhão, Monitoramento por Armadilhas Semioquímicas e Índices de Infestação Georreferenciados</li><li>6.4 Controle Biológico Aplicado e Conservativo: Fungos Entomopatogênicos (Beauveria bassiana, Metarhizium anisopliae), Bacillus spp., Trichoderma spp. e Parasitoides</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 07</div>
-          <h3 class="chapter-title">Capítulo 7 — Maturação Fisiológica, Ponto Ótimo de Colheita Seletiva e Mecanizada</h3>
-          <ul class="chapter-topics"><li>7.1 Bioquímica da Maturação do Fruto: Evolução de Açúcares Redutores e Não Redutores, Ácidos Clorogênicos, Trigonelina, Cafeína, Lipídios e Compostos Voláteis Precursores</li><li>7.2 Cinética da Força de Desprendimento Físico do Pedúnculo (FDF) em Frutos Verdes e Cerejas e Índices de Maturação Ótima (°Brix, Relação °Brix/Acidez e Colorimetria CIELAB)</li><li>7.3 Planejamento Operacional de Colheita: Estimativa de Safra por Amostragem Estratificada, Mapeamento de Maturação e Escalonamento de Talhões por Ciclo (Precoce, Médio e Tardio)</li><li>7.4 Modalidades de Colheita: Derriça Manual Seletiva no Pano, Colheita Semimecanizada (Derriçadores Portáteis e Tratorizados) e Colhedoras Automotrizes</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 08</div>
-          <h3 class="chapter-title">Capítulo 8 — Engenharia Pós-Colheita: Via Seca, Via Úmida, Fermentação Controlada e Secagem de Precisão</h3>
-          <ul class="chapter-topics"><li>8.1 Engenharia da Unidade de Beneficiamento Úmido: Recepção na Moega, Abanação, Lavador Hidráulico de Fluxo Contínuo e Separação Densimétrica (Boia vs. Cereja/Verde)</li><li>8.2 Processamentos Clássicos e Híbridos: Via Seca (Natural), Descascado (CD), Despolpado (Washed) e Desmucilado Mecânico/Semilavado (Honey: Yellow, Red e Black)</li><li>8.3 Biotecnologia da Fermentação Controlada: Microbiologia Indígena vs. Culturas Iniciadoras (Leveduras e Bactérias Láticas), Biorreatores Aeróbios e Anaeróbios, Maceração Carbônica e Monitoramento de pH, °Brix e Temperatura</li><li>8.4 Termodinâmica e Psicrometria da Secagem do Café: Curvas de Dessorção, Água Livre vs. Água Ligada, Taxa de Secagem e Limites Térmicos da Massa de Grãos (≤ 40 °C para Cafés Especiais)</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 09</div>
-          <h3 class="chapter-title">Capítulo 9 — Classificação Física, Análise Sensorial (Protocolo SCA/CQI), Torra Técnica e Rastreabilidade</h3>
-          <ul class="chapter-topics"><li>9.1 Classificação Física Oficial (COB e Padrões Internacionais Green Coffee): Tabela de Defeitos Intrínsecos (Tipo 1) e Extrínsecos (Tipo 2), Equivalência de Pontos, Peneiras Granulométricas (Chato e Moca), Cor e Aspecto</li><li>9.2 Física e Química da Torra de Amostra e Torra Comercial: Transferência de Calor (Condução, Convecção e Radiação), Reações de Maillard, Degradação de Strecker, Caramelização, Pirólise, First Crack e Development Time Ratio (DTR)</li><li>9.3 Protocolos Internacionais de Análise Sensorial: Metodologia para Coffea arabica (Specialty Coffee) e Protocolo Específico para Coffea canephora (Fine Robusta / Conilon Especial)</li><li>9.4 Atributos Sensoriais Quantitativos e Qualitativos: Fragrância/Aroma, Sabor, Finalização, Acidez, Corpo, Equilíbrio, Doçura, Uniformidade, Xícara Limpa e Calibração de Painel de Provadores</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 10</div>
-          <h3 class="chapter-title">Capítulo 10 — Gestão Econômica, Custos de Produção por Hectare, Certificações e Comercialização Global</h3>
-          <ul class="chapter-topics"><li>10.1 Estrutura de Custos na Cafeicultura segundo a Metodologia CONAB/CEPEA: Custo Operacional Efetivo (COE), Custo Operacional Total (COT) e Custo Total (CT) por Hectare e por Saca Beneficiada (60 kg)</li><li>10.2 Modelagem de Viabilidade Financeira de Lavouras Perenes: Fluxo de Caixa Descontado (15–20 anos), Valor Presente Líquido (VPL), Taxa Interna de Retorno (TIR), Payback Descontado e Custo da Bienalidade</li><li>10.3 Indicadores de Eficiência Operacional e Produtividade: Sacas/ha, Rendimento de Coco/Cereja para Café Beneficiado (Renda), Produtividade da Mão de Obra e Custo Hora-Máquina</li><li>10.4 Certificações Socioambientais, Rastreabilidade Desmatamento-Zero e Créditos de Carbono: Requisitos de Conformidade, Balanço de Gases de Efeito Estufa (GEE) e Sequestro de Carbono no Solo e Biomassa</li></ul>
-        </article>
-        </div>
+
     <div class="support-bar">
       <div>
         <strong style="color: var(--gold);" id="support-title">Já adquiriu sua edição na Hotmart ou no Site Oficial?</strong>
@@ -434,249 +440,82 @@
         Acessar Área de Apoio →
       </a>
     </div>
-  </main>
 
-  <!-- MODAL PIX PROPRIO -->
-  <div id="modal-pix" class="modal-backdrop">
-    <div class="modal-box">
-      <h3 style="color: var(--gold); margin: 0 0 0.5rem;">Pagamento Pix — Hamally Editora</h3>
-      <p style="font-size: 0.85rem; color: var(--muted); margin: 0 0 0.75rem;" id="pix-resumo"></p>
+    <!-- ESTRUTURA COMPLETA DOS 10 MÓDULOS -->
+    <section class="syllabus-section">
+      <h2 class="section-heading" id="syllabus-heading">Conteúdo Programático da Obra (10 Módulos Técnicos)</h2>
+      <p class="section-sub" id="syllabus-sub">Estrutura completa cobrindo fisiologia, manejo clonal, ciclos lunares, irrigação, IoT, pós-colheita, classificação sensorial e gestão econômica.</p>
 
-      <div id="pix-etapa-1">
-        <input id="pix-email" type="email" placeholder="Digite seu e-mail para vincular o pedido" />
-        <button onclick="gerarPix()" class="btn btn-kdp-ebook" style="margin-top: 0.85rem;">Gerar QR Code Pix</button>
-      </div>
-
-      <div id="pix-etapa-2" style="display: none;">
-        <img id="pix-qr" alt="QR Code Pix" style="width: 210px; height: 210px; background: #fff; padding: 8px; border-radius: 8px; margin-top: 0.5rem;" />
-        <p style="font-size: 0.85rem; margin: 0.65rem 0 0.25rem;">Código do Pedido: <strong id="pix-codigo" style="color: var(--gold);"></strong></p>
-        <textarea id="pix-copia" readonly rows="3" style="font-size: 0.72rem; color: var(--muted);"></textarea>
-        <button onclick="copiarPix()" class="btn" style="background: var(--blue); color: var(--surface-alt);">Copiar Código Pix</button>
-        <p id="pix-status-msg" style="font-size: 0.85rem; color: var(--gold); margin-top: 0.85rem;">⏳ Aguardando confirmação do pagamento...</p>
-      </div>
-
-      <button onclick="fecharPix()" style="margin-top: 0.85rem; background: transparent; border: none; color: var(--muted); cursor: pointer;">Fechar</button>
-    </div>
-  </div>
-<div class="chapters-grid">
-          
+      <div class="chapters-grid">
         <article class="chapter-card">
           <div class="chapter-num">Módulo 01</div>
           <h3 class="chapter-title">Capítulo 1 — Fisiologia Comparada e Ecofisiologia de Coffea arabica, Coffea canephora (Conilon e Robusta)</h3>
-          <ul class="chapter-topics"><li>1.1 Bases Genéticas, Citogenéticas e Morfoanatômicas: Tetraploidia (C. arabica) versus Diploidia Alógama (C. canephora Grupos Conilon e Robusta)</li><li>1.2 Arquitetura Radicular, Dimorfismo de Ramos (Ortotrópicos e Plagiotrópicos) e Dinâmica de Crescimento Vegetativo</li><li>1.3 Metabolismo Fotossintético C3, Condutância Estomática, Ponto de Compensação Luminosa e Respostas ao Déficit de Pressão de Vapor (DPV)</li><li>1.4 Zoneamento Agroclimático, Limiares Térmicos, Fotoperíodo Indutivo e Estresse Oxidativo por Altas e Baixas Temperaturas</li></ul>
+          <ul class="chapter-topics">
+            <li>1.1 Bases Genéticas, Citogenéticas e Morfoanatômicas: Tetraploidia (C. arabica) versus Diploidia Alógama (C. canephora Grupos Conilon e Robusta)</li>
+            <li>1.2 Arquitetura Radicular, Dimorfismo de Ramos (Ortotrópicos e Plagiotrópicos) e Dinâmica de Crescimento Vegetativo</li>
+            <li>1.3 Metabolismo Fotossintético C3, Condutância Estomática, Ponto de Compensação Luminosa e Respostas ao Déficit de Pressão de Vapor (DPV)</li>
+            <li>1.4 Zoneamento Agroclimático, Limiares Térmicos, Fotoperíodo Indutivo e Estresse Oxidativo por Altas e Baixas Temperaturas</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 02</div>
           <h3 class="chapter-title">Capítulo 2 — Implantação, Propagação Clonal, Viveiros Tecnificados e Nutrição Mineral de Precisão</h3>
-          <ul class="chapter-topics"><li>2.1 Engenharia de Implantação: Sistematização Topográfica, Arruamento Nivelado, Subsolagem Profunda e Arranjos Espaciais de Plantio</li><li>2.2 Propagação Seminífera versus Propagação Clonal: Jardins Clonais Superadensados, Estaquia Ortotrópica, Miniestaquia e Embriogênese Somática</li><li>2.3 Engenharia de Viveiros Tecnificados: Substratos Estabilizados, Ambiência, Irrigação por Microaspersão, Poda de Raízes e Aclimatação (Rustificação)</li><li>2.4 Compatibilidade Genética em Policlones de C. canephora, Sincronia de Florescimento e Polinização Cruzada Dirigida</li></ul>
+          <ul class="chapter-topics">
+            <li>2.1 Engenharia de Implantação: Sistematização Topográfica, Arruamento Nivelado, Subsolagem Profunda e Arranjos Espaciais de Plantio</li>
+            <li>2.2 Propagação Seminífera versus Propagação Clonal: Jardins Clonais Superadensados, Estaquia Ortotrópica, Miniestaquia e Embriogênese Somática</li>
+            <li>2.3 Engenharia de Viveiros Tecnificados: Substratos Estabilizados, Ambiência, Irrigação por Microaspersão, Poda de Raízes e Aclimatação (Rustificação)</li>
+            <li>2.4 Compatibilidade Genética em Policlones de C. canephora, Sincronia de Florescimento e Polinização Cruzada Dirigida</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 03</div>
           <h3 class="chapter-title">Capítulo 3 — Sincronização Lunar Aplicada à Cafeicultura: Fases Sinódicas, Dinâmica de Seiva, Poda, Plantio e Colheita</h3>
-          <ul class="chapter-topics"><li>3.1 Fundamentos Biofísicos dos Ciclos Lunares na Fisiologia Vegetal: Ciclo Sinódico (29,53 dias), Ciclo Anomalístico (Perigeu/Apogeu) e Ciclo Trópico (Lunisticial)</li><li>3.2 Forças Gravitacionais de Maré, Potencial Matricial da Água no Solo, Pressão Radicular e Fluxo Xilemático/Floemático da Seiva</li><li>3.3 Fotomorfogênese Noturna: Luminosidade Lunar, Fitocromos (Pr / Pfr), Ritmos Circadianos Endógenos e Emissão de Raízes Finas</li><li>3.4 Protocolos Lunares para Estaquia, Enraizamento em Viveiro, Transplantio no Campo e Adubação Foliar/Via Solo</li></ul>
+          <ul class="chapter-topics">
+            <li>3.1 Fundamentos Biofísicos dos Ciclos Lunares na Fisiologia Vegetal: Ciclo Sinódico (29,53 dias), Ciclo Anomalístico (Perigeu/Apogeu) e Ciclo Trópico (Lunisticial)</li>
+            <li>3.2 Forças Gravitacionais de Maré, Potencial Matricial da Água no Solo, Pressão Radicular e Fluxo Xilemático/Floemático da Seiva</li>
+            <li>3.3 Fotomorfogênese Noturna: Luminosidade Lunar, Fitocromos (Pr / Pfr), Ritmos Circadianos Endógenos e Emissão de Raízes Finas</li>
+            <li>3.4 Protocolos Lunares para Estaquia, Enraizamento em Viveiro, Transplantio no Campo e Adubação Foliar/Via Solo</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 04</div>
           <h3 class="chapter-title">Capítulo 4 — Manejo Hídrico, Irrigação Localizada, Fertirrigação e Controle de Déficit Hídrico</h3>
-          <ul class="chapter-topics"><li>4.1 Relações Hídricas no Sistema Solo-Planta-Atmosfera (SPAC): Potencial Hídrico Foliar (Ψw), Curva de Retenção de Água no Solo (CRA) e Água Facilmente Disponível (AFD)</li><li>4.2 Evapotranspiração da Cultura (ETc), Equação de Penman-Monteith (FAO-56) e Coeficientes de Cultura (Kc e KL) para Arábica, Conilon e Robusta</li><li>4.3 Dimensionamento Hidráulico de Irrigação Localizada (Gotejamento Superficial e Subsuperficial): Perda de Carga, Coeficiente de Uniformidade de Christiansen (CUC) e Uniformidade de Distribuição (CUD)</li><li>4.4 Estratégias de Déficit Hídrico Controlado (RDI): Estresse Hídrico Programado no Pré-Florescimento para Uniformização da Antese e Concentração de Maturação</li></ul>
+          <ul class="chapter-topics">
+            <li>4.1 Relações Hídricas no Sistema Solo-Planta-Atmosfera (SPAC): Potencial Hídrico Foliar (Ψw), Curva de Retenção de Água no Solo (CRA) e Água Facilmente Disponível (AFD)</li>
+            <li>4.2 Evapotranspiração da Cultura (ETc), Equação de Penman-Monteith (FAO-56) e Coeficientes de Cultura (Kc e KL) para Arábica, Conilon e Robusta</li>
+            <li>4.3 Dimensionamento Hidráulico de Irrigação Localizada (Gotejamento Superficial e Subsuperficial): Perda de Carga, Coeficiente de Uniformidade de Christiansen (CUC) e Uniformidade de Distribuição (CUD)</li>
+            <li>4.4 Estratégias de Déficit Hídrico Controlado (RDI): Estresse Hídrico Programado no Pré-Florescimento para Uniformização da Antese e Concentração de Maturação</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 05</div>
           <h3 class="chapter-title">Capítulo 5 — Arquitetura de Automação IoT no Campo: Sensores de Solo/Clima, Telemetria sem Fio, Malhas de Controle e Balanço Energético</h3>
-          <ul class="chapter-topics"><li>5.1 Instrumentação Agrometeorológica e Edáfica: Sensores Capacitivos (FDR/TDR), Tensiômetros Eletrônicos, Sondas Multiparamétricas (CE, Temperatura, pH) e Dendrômetros</li><li>5.2 Redes de Sensores sem Fio (WSN) em Topografias Acidentadas e Sombreadas: Modulação de Espectro Espalhado, Orçamento de Enlace (Link Budget), Zona de Fresnel e Topologias Mesh/Estrela</li><li>5.3 Gateways de Borda (Edge Computing), Protocolos de Telemetria Leve (MQTT, CoAP, Modbus RTU/RS-485) e Tolerância a Falhas Offline</li><li>5.4 Malhas de Controle Fechado (PID e Lógica Fuzzy) para Acionamento Autônomo de Válvulas Solenoides, Bombas com Inversor de Frequência e Dosadores de Fertirrigação</li></ul>
+          <ul class="chapter-topics">
+            <li>5.1 Instrumentação Agrometeorológica e Edáfica: Sensores Capacitivos (FDR/TDR), Tensiômetros Eletrônicos, Sondas Multiparamétricas (CE, Temperatura, pH) e Dendrômetros</li>
+            <li>5.2 Redes de Sensores sem Fio (WSN) em Topografias Acidentadas e Sombreadas: Modulação de Espectro Espalhado, Orçamento de Enlace (Link Budget), Zona de Fresnel e Topologias Mesh/Estrela</li>
+            <li>5.3 Gateways de Borda (Edge Computing), Protocolos de Telemetria Leve (MQTT, CoAP, Modbus RTU/RS-485) e Tolerância a Falhas Offline</li>
+            <li>5.4 Malhas de Controle Fechado (PID e Lógica Fuzzy) para Acionamento Autônomo de Válvulas Solenoides, Bombas com Inversor de Frequência e Dosadores de Fertirrigação</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 06</div>
           <h3 class="chapter-title">Capítulo 6 — Manejo Integrado de Pragas, Doenças e Bioestimulação Fisiológica de Baixo Impacto</h3>
-          <ul class="chapter-topics"><li>6.1 Epidemiologia e Níveis de Dano Econômico (NDE) das Principais Pragas: Broca-do-Café (Hypothenemus hampei), Bicho-Mineiro (Leucoptera coffeella), Ácaros e Cochonilhas</li><li>6.2 Etiologia e Modelagem Climática de Doenças Fúngicas e Bacterianas: Ferrugem (Hemileia vastatrix), Cercosporiose, Phoma, Mancha-Manteigosa e Nematoides (Meloidogyne spp.)</li><li>6.3 Amostragem Sistemática por Talhão, Monitoramento por Armadilhas Semioquímicas e Índices de Infestação Georreferenciados</li><li>6.4 Controle Biológico Aplicado e Conservativo: Fungos Entomopatogênicos (Beauveria bassiana, Metarhizium anisopliae), Bacillus spp., Trichoderma spp. e Parasitoides</li></ul>
+          <ul class="chapter-topics">
+            <li>6.1 Epidemiologia e Níveis de Dano Econômico (NDE) das Principais Pragas: Broca-do-Café (Hypothenemus hampei), Bicho-Mineiro (Leucoptera coffeella), Ácaros e Cochonilhas</li>
+            <li>6.2 Etiologia e Modelagem Climática de Doenças Fúngicas e Bacterianas: Ferrugem (Hemileia vastatrix), Cercosporiose, Phoma, Mancha-Manteigosa e Nematoides (Meloidogyne spp.)</li>
+            <li>6.3 Amostragem Sistemática por Talhão, Monitoramento por Armadilhas Semioquímicas e Índices de Infestação Georreferenciados</li>
+            <li>6.4 Controle Biológico Aplicado e Conservativo: Fungos Entomopatogênicos (Beauveria bassiana, Metarhizium anisopliae), Bacillus spp., Trichoderma spp. e Parasitoides</li>
+          </ul>
         </article>
+
         <article class="chapter-card">
           <div class="chapter-num">Módulo 07</div>
           <h3 class="chapter-title">Capítulo 7 — Maturação Fisiológica, Ponto Ótimo de Colheita Seletiva e Mecanizada</h3>
-          <ul class="chapter-topics"><li>7.1 Bioquímica da Maturação do Fruto: Evolução de Açúcares Redutores e Não Redutores, Ácidos Clorogênicos, Trigonelina, Cafeína, Lipídios e Compostos Voláteis Precursores</li><li>7.2 Cinética da Força de Desprendimento Físico do Pedúnculo (FDF) em Frutos Verdes e Cerejas e Índices de Maturação Ótima (°Brix, Relação °Brix/Acidez e Colorimetria CIELAB)</li><li>7.3 Planejamento Operacional de Colheita: Estimativa de Safra por Amostragem Estratificada, Mapeamento de Maturação e Escalonamento de Talhões por Ciclo (Precoce, Médio e Tardio)</li><li>7.4 Modalidades de Colheita: Derriça Manual Seletiva no Pano, Colheita Semimecanizada (Derriçadores Portáteis e Tratorizados) e Colhedoras Automotrizes</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 08</div>
-          <h3 class="chapter-title">Capítulo 8 — Engenharia Pós-Colheita: Via Seca, Via Úmida, Fermentação Controlada e Secagem de Precisão</h3>
-          <ul class="chapter-topics"><li>8.1 Engenharia da Unidade de Beneficiamento Úmido: Recepção na Moega, Abanação, Lavador Hidráulico de Fluxo Contínuo e Separação Densimétrica (Boia vs. Cereja/Verde)</li><li>8.2 Processamentos Clássicos e Híbridos: Via Seca (Natural), Descascado (CD), Despolpado (Washed) e Desmucilado Mecânico/Semilavado (Honey: Yellow, Red e Black)</li><li>8.3 Biotecnologia da Fermentação Controlada: Microbiologia Indígena vs. Culturas Iniciadoras (Leveduras e Bactérias Láticas), Biorreatores Aeróbios e Anaeróbios, Maceração Carbônica e Monitoramento de pH, °Brix e Temperatura</li><li>8.4 Termodinâmica e Psicrometria da Secagem do Café: Curvas de Dessorção, Água Livre vs. Água Ligada, Taxa de Secagem e Limites Térmicos da Massa de Grãos (≤ 40 °C para Cafés Especiais)</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 09</div>
-          <h3 class="chapter-title">Capítulo 9 — Classificação Física, Análise Sensorial (Protocolo SCA/CQI), Torra Técnica e Rastreabilidade</h3>
-          <ul class="chapter-topics"><li>9.1 Classificação Física Oficial (COB e Padrões Internacionais Green Coffee): Tabela de Defeitos Intrínsecos (Tipo 1) e Extrínsecos (Tipo 2), Equivalência de Pontos, Peneiras Granulométricas (Chato e Moca), Cor e Aspecto</li><li>9.2 Física e Química da Torra de Amostra e Torra Comercial: Transferência de Calor (Condução, Convecção e Radiação), Reações de Maillard, Degradação de Strecker, Caramelização, Pirólise, First Crack e Development Time Ratio (DTR)</li><li>9.3 Protocolos Internacionais de Análise Sensorial: Metodologia para Coffea arabica (Specialty Coffee) e Protocolo Específico para Coffea canephora (Fine Robusta / Conilon Especial)</li><li>9.4 Atributos Sensoriais Quantitativos e Qualitativos: Fragrância/Aroma, Sabor, Finalização, Acidez, Corpo, Equilíbrio, Doçura, Uniformidade, Xícara Limpa e Calibração de Painel de Provadores</li></ul>
-        </article>
-        <article class="chapter-card">
-          <div class="chapter-num">Módulo 10</div>
-          <h3 class="chapter-title">Capítulo 10 — Gestão Econômica, Custos de Produção por Hectare, Certificações e Comercialização Global</h3>
-          <ul class="chapter-topics"><li>10.1 Estrutura de Custos na Cafeicultura segundo a Metodologia CONAB/CEPEA: Custo Operacional Efetivo (COE), Custo Operacional Total (COT) e Custo Total (CT) por Hectare e por Saca Beneficiada (60 kg)</li><li>10.2 Modelagem de Viabilidade Financeira de Lavouras Perenes: Fluxo de Caixa Descontado (15–20 anos), Valor Presente Líquido (VPL), Taxa Interna de Retorno (TIR), Payback Descontado e Custo da Bienalidade</li><li>10.3 Indicadores de Eficiência Operacional e Produtividade: Sacas/ha, Rendimento de Coco/Cereja para Café Beneficiado (Renda), Produtividade da Mão de Obra e Custo Hora-Máquina</li><li>10.4 Certificações Socioambientais, Rastreabilidade Desmatamento-Zero e Créditos de Carbono: Requisitos de Conformidade, Balanço de Gases de Efeito Estufa (GEE) e Sequestro de Carbono no Solo e Biomassa</li></ul>
-        </article>
-        </div>
-  <script>
-    const CONFIG_LIVRO = {
-      slug: "manual-tecnico-da-cafeicultura-moderna",
-      idiomas: {
-        pt: {
-          tag: "ENGENHARIA AGRONÔMICA & AUTOMAÇÃO",
-          titulo: "Manual Técnico da Cafeicultura Moderna",
-          subtitulo: "Manejo de alta performance para café Conilon, Arábica e Robusta, nutrição de precisão, sincronização lunar e telemetria IoT aplicada ao campo.",
-          capa: "./capa_estatica_pt.png",
-          specs: 'Formato 7" × 10" • Edição em Português',
-          valorPix: 49.90,
-          precoKdp: "R$ 29,90",
-          precoHotmart: "R$ 39,90",
-          precoSite: "R$ 49,90",
-          urlKdpEbook: "https://www.amazon.com.br/dp/SEU_ASIN_EBOOK_PT",
-          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_PT",
-          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_PT",
-          btnKdpEbook: "Comprar eBook na Amazon KDP",
-          btnKdpPrint: "Comprar Livro Impresso (KDP)",
-          btnHotmart: "Comprar na Hotmart",
-          btnSite: "Comprar no Site (Pix)",
-          portal: "Área de Apoio",
-          supportTitle: "Já adquiriu sua edição na Hotmart ou no Site Oficial?",
-          supportDesc: "Insira o código da sua compra no Portal do Leitor para baixar seus arquivos ou ouvir os capítulos narrados.",
-          supportBtn: "Acessar Área de Apoio →"
-        },
-        en: {
-          tag: "AGRONOMIC ENGINEERING & IOT AUTOMATION",
-          titulo: "Technical Manual of Modern Coffee Cultivation",
-          subtitulo: "High-performance management for Conilon, Arabica, and Robusta coffee, precision nutrition, lunar synchronization, and field IoT telemetry.",
-          capa: "./assets/capa_en.png",
-          specs: '7" × 10" Format • English Edition',
-          valorPix: 49.90,
-          precoKdp: "$ 9.90",
-          precoHotmart: "$ 14.90",
-          precoSite: "R$ 49,90 (Pix)",
-          urlKdpEbook: "https://www.amazon.com/dp/SEU_ASIN_EBOOK_EN",
-          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_EN",
-          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_EN",
-          btnKdpEbook: "Buy Kindle eBook on Amazon KDP",
-          btnKdpPrint: "Buy Paperback Edition (KDP)",
-          btnHotmart: "Buy on Hotmart",
-          btnSite: "Buy Direct (Pix)",
-          portal: "Reader Portal",
-          supportTitle: "Already purchased on Hotmart or our Official Store?",
-          supportDesc: "Enter your purchase code in the Reader Portal to download your files or listen to the narrated chapters.",
-          supportBtn: "Open Reader Portal →"
-        },
-        es: {
-          tag: "INGENIERÍA AGRONÓMICA Y AUTOMATIZACIÓN",
-          titulo: "Manual Técnico de la Caficultura Moderna",
-          subtitulo: "Manejo de alto rendimiento para café Conilon, Arábica y Robusta, nutrición de precisión, sincronización lunar y telemetría IoT en campo.",
-          capa: "./assets/capa_es.png",
-          specs: 'Formato 7" × 10" • Edición en Español',
-          valorPix: 49.90,
-          precoKdp: "$ 9.90",
-          precoHotmart: "$ 14.90",
-          precoSite: "R$ 49,90 (Pix)",
-          urlKdpEbook: "https://www.amazon.com/dp/SEU_ASIN_EBOOK_ES",
-          urlKdpPrint: "https://www.amazon.com/dp/SEU_ASIN_IMPRESSO_ES",
-          urlHotmart: "https://pay.hotmart.com/SEU_LINK_HOTMART_ES",
-          btnKdpEbook: "Comprar eBook en Amazon KDP",
-          btnKdpPrint: "Comprar Libro Impreso (KDP)",
-          btnHotmart: "Comprar en Hotmart",
-          btnSite: "Comprar en el Sitio (Pix)",
-          portal: "Área de Apoyo",
-          supportTitle: "¿Ya adquirió su edición en Hotmart o en el Sitio Oficial?",
-          supportDesc: "Ingrese el código de su compra en el Portal del Lector para descargar sus archivos o escuchar los capítulos narrados.",
-          supportBtn: "Acceder al Área de Apoyo →"
-        }
-      }
-    };
-
-    let idiomaAtual = "pt";
-    let timerStatus = null;
-
-    function mudarIdioma(idm) {
-      idiomaAtual = idm;
-      const d = CONFIG_LIVRO.idiomas[idm];
-      document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-      document.getElementById("btn-" + idm).classList.add("active");
-
-      document.getElementById("book-tag").textContent = d.tag;
-      document.getElementById("book-title").textContent = d.titulo;
-      document.getElementById("book-subtitle").textContent = d.subtitulo;
-      document.getElementById("book-cover").src = d.capa;
-      document.getElementById("book-specs").textContent = d.specs;
-
-      document.getElementById("kdp-price").textContent = d.precoKdp;
-      document.getElementById("hotmart-price").textContent = d.precoHotmart;
-      document.getElementById("site-price").textContent = d.precoSite;
-
-      document.getElementById("link-kdp-ebook").href = d.urlKdpEbook;
-      document.getElementById("link-kdp-ebook").textContent = d.btnKdpEbook;
-      document.getElementById("link-kdp-print").href = d.urlKdpPrint;
-      document.getElementById("link-kdp-print").textContent = d.btnKdpPrint;
-
-      document.getElementById("link-hotmart").href = d.urlHotmart;
-      document.getElementById("link-hotmart").textContent = d.btnHotmart;
-      document.getElementById("btn-comprar-pix").textContent = d.btnSite;
-      document.getElementById("nav-portal").textContent = d.portal;
-
-      document.getElementById("support-title").textContent = d.supportTitle;
-      document.getElementById("support-desc").textContent = d.supportDesc;
-      document.getElementById("support-btn").textContent = d.supportBtn;
-    }
-
-    function abrirPix() {
-      const d = CONFIG_LIVRO.idiomas[idiomaAtual];
-      document.getElementById("pix-resumo").textContent = d.titulo + " (" + idiomaAtual.toUpperCase() + ") — R$ " + d.valorPix.toFixed(2);
-      document.getElementById("pix-etapa-1").style.display = "block";
-      document.getElementById("pix-etapa-2").style.display = "none";
-      document.getElementById("modal-pix").style.display = "flex";
-    }
-
-    function fecharPix() {
-      document.getElementById("modal-pix").style.display = "none";
-      if (timerStatus) clearInterval(timerStatus);
-    }
-
-    function copiarPix() {
-      const txt = document.getElementById("pix-copia").value;
-      navigator.clipboard.writeText(txt);
-      alert("Código Pix Copia e Cola copiado!");
-    }
-
-    async function gerarPix() {
-      const d = CONFIG_LIVRO.idiomas[idiomaAtual];
-      const email = document.getElementById("pix-email").value;
-      const r = await fetch("https://app.hamally.store/api/pix/criar", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          livro: CONFIG_LIVRO.slug,
-          idioma: idiomaAtual,
-          valor: d.valorPix,
-          email
-        })
-      });
-      const res = await r.json();
-      if (!res.ok) {
-        alert(res.erro || "Erro ao gerar Pix.");
-        return;
-      }
-
-      document.getElementById("pix-etapa-1").style.display = "none";
-      document.getElementById("pix-etapa-2").style.display = "block";
-      document.getElementById("pix-qr").src = res.qr_image_url;
-      document.getElementById("pix-codigo").textContent = res.codigo;
-      document.getElementById("pix-copia").value = res.pix_copia_cola;
-
-      if (timerStatus) clearInterval(timerStatus);
-      timerStatus = setInterval(async () => {
-        const st = await fetch("https://app.hamally.store/api/pix/status?codigo=" + encodeURIComponent(res.codigo));
-        const stData = await st.json();
-        if (stData.pago) {
-          clearInterval(timerStatus);
-          document.getElementById("pix-status-msg").innerHTML =
-            '✅ <strong>Pagamento Confirmado!</strong><br>' +
-            '<a href="https://app.hamally.store/?codigo=' + encodeURIComponent(res.codigo) + '" ' +
-            'class="btn btn-pix" style="margin-top:0.65rem">Acessar Apostila, Material e Áudios Agora</a>';
-        }
-      }, 5000);
-    }
-
-    mudarIdioma("pt");
-  </script>
-</body>
-</html>
+          <ul class="chapter-topics">
+            <li>7.1 Bioquímica da Maturação do Fruto: Evolução de Açúcares Redutores e Não Redutores, Ácidos Clorogênicos, Trigonelina, Cafeína, Lipídios e Compostos Voláteis Precursores</li>
+            <li>7.2 Cinética da Força de Desprendimento Físico do Pedúnculo (FDF) em Frutos Verdes e Cerejas e Índices de Maturação Ótima (°Brix, Relação °Brix/Acidez e Colorimetria CIEL
